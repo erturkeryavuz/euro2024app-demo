@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="News icon">
+  <rect width="120" height="120" fill="#f8fafc"/>
+  <circle cx="60" cy="60" r="48" fill="#0f172a"/>
+  <circle cx="60" cy="60" r="42" fill="none" stroke="#f8fafc" stroke-width="3"/>
+  <rect x="10" y="42" width="100" height="36" rx="6" fill="#f8fafc"/>
+  <text x="60" y="68" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="26" font-weight="900" letter-spacing="1.5" fill="#0f172a">NEWS</text>
+</svg>

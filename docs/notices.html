@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Third-Party Notices &amp; Media Provenance — Euro2024App Showcase</title>
+  <meta name="description" content="Creative Commons photograph credits, licenses, modification disclosures, original SVG records, and rights boundary notice for the Euro2024App static web showcase." />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080d18;
+      --surface: #111827;
+      --surface-alt: #1a2438;
+      --border: rgba(148, 163, 184, 0.22);
+      --text: #f1f5f9;
+      --muted: #cbd5e1;
+      --accent: #22c55e;
+      --link: #7dd3fc;
+      --link-hover: #bae6fd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top, #13223b 0%, var(--bg) 62%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: var(--link); text-underline-offset: 3px; }
+    a:hover { color: var(--link-hover); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 13, 24, 0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { color: #ffffff; filter: brightness(1.08); }
+    .top-meta { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.86rem; color: var(--muted); }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 56px; }
+    h1 { margin: 0 0 12px; font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.25; }
+    h2 { margin: 30px 0 12px; font-size: 1.18rem; color: #86efac; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85em;
+      background: rgba(148, 163, 184, 0.14);
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: #f8fafc;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+    ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 780px; font-size: 0.88rem; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--surface-alt); color: #f8fafc; font-weight: 600; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: none; }
+    .notice-box {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 22px;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="back-link" href="index.html">← Back to Interactive Showcase</a>
+      <div class="top-meta">
+        <span>Markdown record: <a href="https://github.com/erturkeryavuz/euro2024app-demo/blob/main/docs/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">docs/THIRD-PARTY-NOTICES.md ↗</a></span>
+        <span>Repository: <a href="https://github.com/erturkeryavuz/euro2024app-demo" target="_blank" rel="noopener noreferrer">erturkeryavuz/euro2024app-demo ↗</a></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1>Third-Party Notices &amp; Media Provenance (<code>docs/</code>)</h1>
+    <p>
+      This interactive web showcase (<code>docs/</code>) presents the <strong>Euro2024App</strong> SwiftUI &amp; Firebase project as an unmonetized, static software-engineering portfolio demonstration. It is not affiliated with, endorsed by, or sponsored by UEFA, any national football federation, any club, or any athlete.
+    </p>
+
+    <section class="card" aria-labelledby="original-graphics">
+      <h2 id="original-graphics" style="margin-top:0">1. Original Graphics Authored for This Showcase (25 SVGs)</h2>
+      <p>The following vector graphics in <code>docs/assets/</code> are original works created specifically for this static showcase (containing no third-party trademarks, stock watermarks, or UEFA branding):</p>
+      <ul>
+        <li><code>docs/assets/icons/analyzes.svg</code>, <code>docs/assets/icons/profile.svg</code>, <code>docs/assets/icons/players.svg</code>, <code>docs/assets/icons/news.svg</code> — Original 120×120 Home/Main tile icons matching <code>ContentView.swift</code> / <code>MainView.swift</code>.</li>
+        <li><code>docs/assets/neon-mesh-bg.svg</code> — Original dark neon geometric polygon backdrop reproducing the <code>matches bg3</code> visual palette.</li>
+        <li><code>docs/assets/teams/t1.svg</code> through <code>docs/assets/teams/t20.svg</code> — 20 original circular geometric national-color monogram badges replacing copyrighted football federation crests.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="third-party-photos">
+      <h2 id="third-party-photos">2. Third-Party Photographs (Creative Commons &amp; CC0 Licenses — 49 Files)</h2>
+      <p>
+        All photographic portraits (<code>docs/assets/players/p*.jpg</code>) and the stadium backdrop (<code>docs/assets/stadium-bg.jpg</code>) are cropped and/or resized derivatives of openly licensed photographs verified on Wikimedia Commons. Attribution is required for all <code>CC BY</code> and <code>CC BY-SA</code> works; cropped derivatives of <code>CC BY-SA</code> photographs are shared under the same respective <code>CC BY-SA</code> license.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Showcase Asset</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Author / Creator</th>
+              <th scope="col">License</th>
+              <th scope="col">Source Page</th>
+              <th scope="col">Modifications</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>docs/assets/stadium-bg.jpg</code></td>
+              <td>Olympiastadion Berlin Interior</td>
+              <td>Tobi 87</td>
+              <td><a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Berliner_Olympiastadion_night.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Vertical portrait crop of Olympiastadion Berlin at night; resized to 720×1080 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p1.jpg</code></td>
+              <td>Manuel Neuer</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Manuel_Neuer_Ecuador_v_Germany_25_June_2026-148.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p7.jpg</code></td>
+              <td>Ilkay Gundogan</td>
+              <td>Granada</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:20180602_FIFA_Friendly_Match_Austria_vs._Germany_%C4%B0lkay_G%C3%BCndo%C4%9Fan_850_0728.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p8.jpg</code></td>
+              <td>Thomas Muller</td>
+              <td>Werner100359</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p9.jpg</code></td>
+              <td>Serge Gnabry</td>
+              <td>حسین ظهروند</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Serge_Gnabry_WC2022.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p10.jpg</code></td>
+              <td>Timo Werner</td>
+              <td>Steffen Prößdorf</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:2020-03-10_Fu%C3%9Fball,_M%C3%A4nner,_UEFA_Champions_League_Achtelfinale,_RB_Leipzig_-_Tottenham_Hotspur_1DX_3684_by_Stepro.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p18.jpg</code></td>
+              <td>Paul Pogba</td>
+              <td>Gilzetbase</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Paul_Pogba_Cannes_2025.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p19.jpg</code></td>
+              <td>Antoine Griezmann</td>
+              <td>Антон Зайцев</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:FRA-ARG_(10)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p20.jpg</code></td>
+              <td>Kylian Mbappe</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_France_v_Senegal_16_June_2026-391_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p21.jpg</code></td>
+              <td>Karim Benzema</td>
+              <td>Chris Deahr</td>
+              <td><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Karim_Benzema_vs._FC_Schalke_04_(16647992937).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p22.jpg</code></td>
+              <td>Kingsley Coman</td>
+              <td>Sven Mandel</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Kingsley_Coman_(2019)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p41.jpg</code></td>
+              <td>Nicolo Barella</td>
+              <td>Biser Todorov</td>
+              <td><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Nicol%C3%B2_Barella_in_2021_(cropped_2).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p42.jpg</code></td>
+              <td>Federico Chiesa</td>
+              <td>Kirill Venediktov</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Federico_Chiesa_vs_Zenit_2021-10-20_(cropped2).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p43.jpg</code></td>
+              <td>Lorenzo Insigne</td>
+              <td>Clément Bucco-Lechat (cropped)</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Bar%C3%A7a_-_Napoli_-_20140806_-_13_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p53.jpg</code></td>
+              <td>Harry Kane</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Harry_Kane_England_v_Ghana_23_June_2026-024_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p54.jpg</code></td>
+              <td>Raheem Sterling</td>
+              <td>Антон Зайцев</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Raheem_Sterling_2018.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p62.jpg</code></td>
+              <td>Axel Witsel</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Axel_Witsel_USMNT_v_Belgium_Mar_28_2026-34_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p63.jpg</code></td>
+              <td>Kevin De Bruyne</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p64.jpg</code></td>
+              <td>Romelu Lukaku</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Romelu_Lukaku_Belgium_v_USA_6_July_2026-038.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p65.jpg</code></td>
+              <td>Dries Mertens</td>
+              <td>Кирилл Венедиктов</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Mertens_2018_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p66.jpg</code></td>
+              <td>Eden Hazard</td>
+              <td>Amir Hosseini</td>
+              <td><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Eden_Hazard_at_Baku_before_2019_UEFA_Europe_League_Final.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p68.jpg</code></td>
+              <td>Virgil van Dijk</td>
+              <td>Ailura</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 at</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:20160604_AUT_NED_8876_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0 at)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p73.jpg</code></td>
+              <td>Georginio Wijnaldum</td>
+              <td>Ailura (derivative by El Loko)</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 at</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:20160604_AUT_NED_8884_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0 at)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p74.jpg</code></td>
+              <td>Donny van de Beek</td>
+              <td>Ardfern</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Donny_van_de_Beek_2021_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p75.jpg</code></td>
+              <td>Memphis Depay</td>
+              <td>Joe Sins (derivative)</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Memphis_Depay_2019.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p76.jpg</code></td>
+              <td>Donyell Malen</td>
+              <td>Sandro Halank</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:DONYELL_MALEN_%E2%80%93_2023.08.12_(02).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p141.jpg</code></td>
+              <td>Robert Lewandowski</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Robert_Lewandowski_NYCFC_v_Chicago_25_July_2026-383.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p149.jpg</code></td>
+              <td>Bruno Fernandes</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p150.jpg</code></td>
+              <td>Bernardo Silva</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Bernardo_Silva_Croatia_v_Portugal_2_July_2026-238.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p151.jpg</code></td>
+              <td>Ruben Neves</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Ruben_Neves_Croatia_v_Portugal_2_July_2026-005.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p152.jpg</code></td>
+              <td>Cristiano Ronaldo</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p153.jpg</code></td>
+              <td>Diogo Jota</td>
+              <td>Timmy96</td>
+              <td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Diogo_Jota_2025_Cropped.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p154.jpg</code></td>
+              <td>Joao Felix</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Joao_Felix_Croatia_v_Portugal_2_July_2026-007.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p173.jpg</code></td>
+              <td>Christian Eriksen</td>
+              <td>Chris 0023 from Lyngby, Denmark</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:20140904_-_Christian_Eriksen_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 2.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p219.jpg</code></td>
+              <td>Alvaro Morata</td>
+              <td>Biso</td>
+              <td><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:%C3%81lvaro_Morata_in_2025.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p220.jpg</code></td>
+              <td>Dani Olmo</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Dani_Olmo_France_v_Spain_7.24.26-176_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p226.jpg</code></td>
+              <td>Ruslan Malinovskyi</td>
+              <td>Богдан Заяц</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:%D0%A0%D1%83%D1%81%D0%BB%D0%B0%D0%BD_%D0%9C%D0%B0%D0%BB%D1%96%D0%BD%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p236.jpg</code></td>
+              <td>Ferdi Kadioglu</td>
+              <td>Serkan Yakın (sekoloji.com)</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p244.jpg</code></td>
+              <td>David Alaba</td>
+              <td>Granada</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p260.jpg</code></td>
+              <td>Luka Modric</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p265.jpg</code></td>
+              <td>Igor Akinfeev</td>
+              <td>Артем Гусев</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Igor_Akinfeev_2020.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p293.jpg</code></td>
+              <td>Remo Freuler</td>
+              <td>Ago76</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:RemoFreuler.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p294.jpg</code></td>
+              <td>Xherdan Shaqiri</td>
+              <td>Антон Зайцев</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Xherdan_Shaqiri_2018.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p296.jpg</code></td>
+              <td>Breel Embolo</td>
+              <td>Sven Mandel</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:2022128160447_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_1422_-_B70I7533_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p297.jpg</code></td>
+              <td>Haris Seferovic</td>
+              <td>Светлана Бекетова</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Haris_Seferovi%C4%87_2018_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 3.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p308.jpg</code></td>
+              <td>Zlatan Ibrahimovic</td>
+              <td>Colleen Sturtevant</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Zlatan_Ibrahimovi%C4%87_nyc.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p321.jpg</code></td>
+              <td>Andrew Robertson</td>
+              <td>Bryan Berlin</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:Andy_Robertson_Scotland_v_Bolivia_6_June_2026-43.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p340.jpg</code></td>
+              <td>Patrik Schick</td>
+              <td>Steffen Prößdorf</td>
+              <td><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:2020-03-10_Fu%C3%9Fball,_M%C3%A4nner,_UEFA_Champions_League_Achtelfinale,_RB_Leipzig_-_Tottenham_Hotspur_1DX_3672_by_Stepro.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG (shared under CC BY-SA 4.0)</td>
+            </tr>
+            <tr>
+              <td><code>docs/assets/players/p351.jpg</code></td>
+              <td>Gareth Bale</td>
+              <td>حسین ظهروند</td>
+              <td><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></td>
+              <td><a href="https://commons.wikimedia.org/wiki/File:2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_(32)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></td>
+              <td>Square head-and-shoulders crop, resized to 240×240 JPEG</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="notice-box" aria-labelledby="rights-boundary">
+      <h2 id="rights-boundary" style="margin-top:0">3. Rights Boundary &amp; Data Provenance Notice</h2>
+      <p>
+        Creative Commons licenses above cover <strong>copyright in the photographs</strong> subject to attribution and applicable ShareAlike conditions. They do not imply athlete endorsement, federation authorization, or trademark licensing, and do not grant personality or publicity rights (explicitly tagged on Wikimedia Commons for several editorial sports portraits and applicable generally to identifiable athletes). Any incidental kit or federation marks visible in editorial photographs remain the property of their respective owners.
+      </p>
+      <p style="margin-bottom:0">
+        <strong>Dataset provenance:</strong> The bundled <code>euro2024_data/*.json</code> dataset (20 teams, 220 players, 5 sample matches dated 2024-07-22 to 2024-07-26, 19 goal events) and 2 static <code>NewsViewModel</code> items are original project demonstration data and do <strong>not</strong> represent official historical UEFA Euro 2024 results or live tournament feeds.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span><a href="index.html">← Return to Euro2024App Interactive Showcase</a></span>
+    <span>Consistent with <code>docs/THIRD-PARTY-NOTICES.md</code> · Unaffiliated portfolio demo</span>
+  </footer>
+</body>
+</html>

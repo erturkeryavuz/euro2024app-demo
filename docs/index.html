@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Euro2024App — Interactive SwiftUI &amp; Firebase Showcase</title>
+  <meta name="description" content="Source-faithful interactive phone-framed presentation of the Euro2024App SwiftUI iOS application and Firebase architecture using verified Creative Commons portraits and original geometric badges." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="assets/icons/analyzes.svg" width="32" height="32" alt="" aria-hidden="true" style="border-radius:8px" />
+        <div>
+          <div class="brand-title">Euro2024App</div>
+          <div class="brand-sub">SwiftUI iOS App &amp; Firebase Architecture Showcase</div>
+        </div>
+      </div>
+
+      <div class="sim-pill" role="note" aria-label="Static simulation disclosure">
+        <span class="sim-dot" aria-hidden="true"></span>
+        Browser Simulation · Licensed CC Media &amp; Original SVGs · No Live Firebase
+      </div>
+
+      <div class="topbar-actions">
+        <button id="btnToggleAuth" class="btn" type="button">
+          Quick Demo Sign-In
+        </button>
+        <button id="btnResetDemo" class="btn btn-ghost" type="button">
+          Reset Session
+        </button>
+        <a class="btn btn-primary" href="https://github.com/erturkeryavuz/euro2024app-demo" target="_blank" rel="noopener noreferrer">
+          GitHub Repository ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero-strip" aria-labelledby="heroHeading">
+      <p class="hero-kicker">SwiftUI + Firebase Portfolio Project · Source-Faithful Static Demo</p>
+      <h1 id="heroHeading" class="hero-title">Interactive iPhone Walkthrough &amp; Firebase Data Inspector</h1>
+      <p class="hero-desc">
+        Faithful browser presentation of the existing <code>Euro2024App</code> SwiftUI views (<code>ContentView</code>, <code>MainView</code>, <code>LoginView</code>, <code>RegisterView</code>, <code>MatchesTabView</code>, <code>MatchDetailView</code>, <code>LeagueStandingView</code>, <code>TeamsView</code>, <code>TeamDetailView</code>, <code>PlayerListView</code>, <code>NewsView</code>, and <code>ProfileView</code>) preserving all 20 teams, 220 real player identities, and 5 bundled sample matches with verified Creative Commons photography and original geometric badges.
+      </p>
+    </section>
+
+    <nav class="tour-bar" aria-label="Guided walkthrough">
+      <span class="tour-label">Guided Tour</span>
+      <button class="tour-pill active" type="button" data-tour="landing">1. Landing</button>
+      <button class="tour-pill" type="button" data-tour="login">2. Login</button>
+      <button class="tour-pill" type="button" data-tour="matches">3. Matches</button>
+      <button class="tour-pill" type="button" data-tour="match-detail">4. Match Timeline</button>
+      <button class="tour-pill" type="button" data-tour="standings">5. Standings</button>
+      <button class="tour-pill" type="button" data-tour="teams">6. Teams</button>
+      <button class="tour-pill" type="button" data-tour="players">7. Players (220)</button>
+      <button class="tour-pill" type="button" data-tour="news">8. News</button>
+      <button class="tour-pill" type="button" data-tour="profile">9. Profile</button>
+    </nav>
+
+    <div class="workspace-grid">
+      <!-- Left: Faithful iOS SwiftUI Phone Frame -->
+      <section class="phone-stage" aria-label="Interactive iOS SwiftUI application presentation">
+        <div class="phone-bezel">
+          <div class="phone-screen">
+            <div id="iosStatusbar" class="ios-statusbar" aria-hidden="true">
+              <span>9:41</span>
+              <div class="dynamic-island"></div>
+              <div class="ios-icons">
+                <span>5G</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <div id="phoneBody" class="phone-app-body" tabindex="0" aria-live="polite"></div>
+
+            <div id="homeIndicator" class="home-indicator" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="phone-caption">
+          Browser simulation of <code>Euro2024App/**/*.swift</code> with verified CC portraits, original geometric national badges, and <a href="notices.html">media notices</a>.
+        </p>
+      </section>
+
+      <!-- Right: Engineering & Firebase Inspector -->
+      <section class="inspector-shell" aria-label="Technical Firebase and architecture inspector">
+        <div class="inspector-tabs" role="tablist" aria-label="Inspector sections">
+          <button id="tabTrace" class="inspector-tab" role="tab" type="button" aria-selected="true" aria-controls="panelTrace" data-inspector="trace">
+            Live Data Trace
+          </button>
+          <button id="tabData" class="inspector-tab" role="tab" type="button" aria-selected="false" aria-controls="panelData" data-inspector="data">
+            Dataset &amp; Provenance
+          </button>
+          <button id="tabArch" class="inspector-tab" role="tab" type="button" aria-selected="false" aria-controls="panelArch" data-inspector="arch">
+            Architecture &amp; Security
+          </button>
+        </div>
+
+        <div id="panelTrace" class="inspector-body" role="tabpanel" aria-labelledby="tabTrace"></div>
+        <div id="panelData" class="inspector-body" role="tabpanel" aria-labelledby="tabData" hidden></div>
+        <div id="panelArch" class="inspector-body" role="tabpanel" aria-labelledby="tabArch" hidden></div>
+      </section>
+    </div>
+
+    <div id="srAnnouncer" class="sr-only" aria-live="assertive"></div>
+
+    <footer class="footer">
+      <span>Static browser simulation · Unaffiliated portfolio demo · <a href="notices.html">Third-Party Photo Credits &amp; Licenses</a></span>
+      <span>Built by <a href="https://github.com/erturkeryavuz" target="_blank" rel="noopener noreferrer">Ertürk Eryavuz</a></span>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
