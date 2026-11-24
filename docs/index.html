@@ -3,35 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Euro2024App — Interactive SwiftUI &amp; Firebase Showcase</title>
-  <meta name="description" content="Source-faithful interactive phone-framed presentation of the Euro2024App SwiftUI iOS application and Firebase architecture using verified Creative Commons portraits and original geometric badges." />
+  <title>Euro2024App — Full-Stack SwiftUI &amp; Firebase Showcase</title>
+  <meta name="description" content="Interactive phone-framed showcase of the Euro2024App SwiftUI iOS and Firebase football companion with a live data trace inspector and optional guided tutorial." />
+  <meta name="theme-color" content="#101113" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand">
-        <img src="assets/icons/analyzes.svg" width="32" height="32" alt="" aria-hidden="true" style="border-radius:8px" />
-        <div>
-          <div class="brand-title">Euro2024App</div>
-          <div class="brand-sub">SwiftUI iOS App &amp; Firebase Architecture Showcase</div>
+      <div class="topbar-left">
+        <a class="portfolio-back" href="https://erturkeryavuz.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">←</span>
+          <span>Back to Portfolio</span>
+        </a>
+        <span class="topbar-divider" aria-hidden="true"></span>
+        <div class="brand">
+          <img src="assets/icons/analyzes.svg" width="30" height="30" alt="" aria-hidden="true" class="brand-emblem" />
+          <div>
+            <div class="brand-title">Euro2024App</div>
+            <div class="brand-sub">SwiftUI iOS &amp; Firebase Architecture</div>
+          </div>
         </div>
       </div>
 
-      <div class="sim-pill" role="note" aria-label="Static simulation disclosure">
-        <span class="sim-dot" aria-hidden="true"></span>
-        Browser Simulation · Licensed CC Media &amp; Original SVGs · No Live Firebase
-      </div>
-
       <div class="topbar-actions">
+        <button id="btnWatchTutorial" class="btn btn-tutorial" type="button" aria-controls="tutorialDock" aria-expanded="false">
+          ▶ Watch Tutorial
+        </button>
         <button id="btnToggleAuth" class="btn" type="button">
           Quick Demo Sign-In
         </button>
         <button id="btnResetDemo" class="btn btn-ghost" type="button">
           Reset Session
         </button>
-        <a class="btn btn-primary" href="https://github.com/erturkeryavuz/euro2024app-demo" target="_blank" rel="noopener noreferrer">
-          GitHub Repository ↗
+        <a class="btn btn-ghost" href="https://github.com/erturkeryavuz/euro2024app-demo" target="_blank" rel="noopener noreferrer">
+          GitHub ↗
         </a>
       </div>
     </div>
@@ -39,15 +45,34 @@
 
   <main class="page">
     <section class="hero-strip" aria-labelledby="heroHeading">
-      <p class="hero-kicker">SwiftUI + Firebase Portfolio Project · Source-Faithful Static Demo</p>
-      <h1 id="heroHeading" class="hero-title">Interactive iPhone Walkthrough &amp; Firebase Data Inspector</h1>
-      <p class="hero-desc">
-        Faithful browser presentation of the existing <code>Euro2024App</code> SwiftUI views (<code>ContentView</code>, <code>MainView</code>, <code>LoginView</code>, <code>RegisterView</code>, <code>MatchesTabView</code>, <code>MatchDetailView</code>, <code>LeagueStandingView</code>, <code>TeamsView</code>, <code>TeamDetailView</code>, <code>PlayerListView</code>, <code>NewsView</code>, and <code>ProfileView</code>) preserving all 20 teams, 220 real player identities, and 5 bundled sample matches with verified Creative Commons photography and original geometric badges.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="hero-kicker">SwiftUI iOS &amp; Firebase Project · Football Companion</p>
+          <h1 id="heroHeading" class="hero-title">Euro 2024 <em>App</em></h1>
+          <p class="hero-desc">
+            A SwiftUI iOS football companion paired with simulated Firebase state, exploring match timelines, unified 20-team standings, national squads, and a 220-player directory. Launch the guided tutorial or inspect live screens and Firestore traces directly.
+          </p>
+        </div>
+
+        <aside class="hero-meta" aria-label="Project summary">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Architecture</span>
+            <span class="hero-meta-value">SwiftUI · Firebase · Firestore</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Highlights</span>
+            <span class="hero-meta-value">Match Timelines · 220 Players · Live Trace</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Simulation Scope</span>
+            <span class="hero-meta-value">Bundled Sample Data · No Live Firebase</span>
+          </div>
+        </aside>
+      </div>
     </section>
 
     <nav class="tour-bar" aria-label="Guided walkthrough">
-      <span class="tour-label">Guided Tour</span>
+      <span class="tour-label">Manual Tour</span>
       <button class="tour-pill active" type="button" data-tour="landing">1. Landing</button>
       <button class="tour-pill" type="button" data-tour="login">2. Login</button>
       <button class="tour-pill" type="button" data-tour="matches">3. Matches</button>
@@ -59,27 +84,50 @@
       <button class="tour-pill" type="button" data-tour="profile">9. Profile</button>
     </nav>
 
+    <section id="tutorialDock" class="tutorial-dock" aria-label="Guided tutorial controls" hidden>
+      <div class="tutorial-dock-top">
+        <div class="tutorial-meta">
+          <span id="tutorialStepBadge" class="tutorial-step-badge">Stage 1 / 9</span>
+          <span id="tutorialStateBadge" class="tutorial-state-badge">Playing</span>
+          <h2 id="tutorialStageTitle" class="tutorial-stage-title">Euro2024App Home &amp; Stadium Shell</h2>
+        </div>
+        <div class="tutorial-controls" role="group" aria-label="Tutorial playback controls">
+          <button id="btnTutPrev" class="btn btn-ghost tutorial-btn" type="button">← Previous</button>
+          <button id="btnTutPlayPause" class="btn btn-tutorial tutorial-btn" type="button" aria-pressed="true">Pause</button>
+          <button id="btnTutNext" class="btn btn-ghost tutorial-btn" type="button">Next →</button>
+          <button id="btnTutRestart" class="btn btn-ghost tutorial-btn" type="button">Restart</button>
+          <button id="btnTutExit" class="btn tutorial-btn" type="button">Exit / Explore Manually</button>
+        </div>
+      </div>
+      <div class="tutorial-progress-track" role="progressbar" id="tutorialProgress" aria-label="Tutorial progress" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1">
+        <div id="tutorialProgressFill" class="tutorial-progress-fill" style="width: 11%;"></div>
+      </div>
+      <p id="tutorialNarration" class="tutorial-narration" aria-live="polite"></p>
+    </section>
+
     <div class="workspace-grid">
       <!-- Left: Faithful iOS SwiftUI Phone Frame -->
       <section class="phone-stage" aria-label="Interactive iOS SwiftUI application presentation">
-        <div class="phone-bezel">
-          <div class="phone-screen">
-            <div id="iosStatusbar" class="ios-statusbar" aria-hidden="true">
-              <span>9:41</span>
-              <div class="dynamic-island"></div>
-              <div class="ios-icons">
-                <span>5G</span>
-                <span>100%</span>
+        <div class="phone-scale-box">
+          <div class="phone-bezel">
+            <div class="phone-screen">
+              <div id="iosStatusbar" class="ios-statusbar" aria-hidden="true">
+                <span>9:41</span>
+                <div class="dynamic-island"></div>
+                <div class="ios-icons">
+                  <span>5G</span>
+                  <span>100%</span>
+                </div>
               </div>
+
+              <div id="phoneBody" class="phone-app-body" tabindex="0" aria-live="polite"></div>
+
+              <div id="homeIndicator" class="home-indicator" aria-hidden="true"></div>
             </div>
-
-            <div id="phoneBody" class="phone-app-body" tabindex="0" aria-live="polite"></div>
-
-            <div id="homeIndicator" class="home-indicator" aria-hidden="true"></div>
           </div>
         </div>
         <p class="phone-caption">
-          Browser simulation of <code>Euro2024App/**/*.swift</code> with verified CC portraits, original geometric national badges, and <a href="notices.html">media notices</a>.
+          Interactive SwiftUI browser simulation · <a href="notices.html">Media credits &amp; licenses</a>
         </p>
       </section>
 
@@ -106,8 +154,16 @@
     <div id="srAnnouncer" class="sr-only" aria-live="assertive"></div>
 
     <footer class="footer">
-      <span>Static browser simulation · Unaffiliated portfolio demo · <a href="notices.html">Third-Party Photo Credits &amp; Licenses</a></span>
-      <span>Built by <a href="https://github.com/erturkeryavuz" target="_blank" rel="noopener noreferrer">Ertürk Eryavuz</a></span>
+      <div class="footer-links">
+        <a href="https://erturkeryavuz.netlify.app/" target="_blank" rel="noopener noreferrer">← Back to Portfolio</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="notices.html">Photo Credits &amp; Licenses</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="https://github.com/erturkeryavuz/euro2024app-demo" target="_blank" rel="noopener noreferrer">Public Demo Repo</a>
+      </div>
+      <div class="footer-meta">
+        <span>Unaffiliated static showcase · Built by <a href="https://github.com/erturkeryavuz" target="_blank" rel="noopener noreferrer">Ertürk Eryavuz</a></span>
+      </div>
     </footer>
   </main>
 

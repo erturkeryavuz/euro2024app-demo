@@ -1186,9 +1186,726 @@ function bindEvents() {
   });
 }
 
-// Persistent Topbar, Tour & Inspector Tab wiring
+/* ==================== OPTIONAL GUIDED WATCH TUTORIAL ==================== */
+
+const TUTORIAL_STAGES = [
+  {
+    id: "landing",
+    title: "Euro2024App Home & Stadium Shell",
+    tourKey: "landing",
+    durationMs: 3600,
+    narration: "Euro2024App pairs a SwiftUI iOS companion with simulated Firebase state. Start from the Olympiastadion Berlin home shell and four original navigation tiles.",
+    enter() {
+      state.inspectorTab = "trace";
+      state.isLoggedIn = false;
+      state.username = "";
+      state.email = "";
+      state.filters = { position: "All", country: "All", minRating: 0 };
+      navigate("landing");
+    },
+  },
+  {
+    id: "auth",
+    title: "Simulated Firebase Sign-In",
+    tourKey: "login",
+    durationMs: 3900,
+    subDelayMs: 1400,
+    narration: "LoginView simulates Firebase email/password authentication locally with zero network requests and zero plaintext passwords stored in UserDefaults.",
+    enter() {
+      state.inspectorTab = "trace";
+      navigate("login");
+    },
+    subAction() {
+      state.isLoggedIn = true;
+      state.username = "eurofan";
+      state.email = "fan@euro2024demo.example";
+      recordTrace({
+        source: "FirebaseAuth (Simulated)",
+        swiftView: "LoginView.swift → MainView.swift",
+        operation: "Login Successful (Zero password stored)",
+        payload: { email: state.email, isLoggedIn: true, storedPasswordInUserDefaults: false },
+        note: "Guided tutorial signed into the local demo account without any live Firebase call.",
+      });
+      navigate("landing");
+    },
+  },
+  {
+    id: "matches-timeline",
+    title: "Sample Fixtures & Match Event Timeline",
+    tourKey: "matches",
+    durationMs: 4200,
+    subDelayMs: 1600,
+    narration: "MatchesTabView lists the 5 bundled sample fixtures, then opens France 3 – 2 Italy to inspect chronologically sorted goal and assist events.",
+    enter() {
+      state.inspectorTab = "trace";
+      navigate("analyzes", { segment: 0 });
+    },
+    subAction() {
+      navigate("match-detail", { matchId: MATCHES[0].id });
+    },
+  },
+  {
+    id: "standings",
+    title: "Unified 20-Team Standings Table",
+    tourKey: "standings",
+    durationMs: 3600,
+    narration: "LeagueStandingView computes live points (3 win / 1 draw / 0 loss) and goal difference across all 20 national teams from the bundled fixtures.",
+    enter() {
+      state.inspectorTab = "trace";
+      navigate("analyzes", { segment: 1 });
+    },
+  },
+  {
+    id: "teams-squad",
+    title: "20 National Teams & Squad Drill-Down",
+    tourKey: "teams",
+    durationMs: 4300,
+    subDelayMs: 1600,
+    narration: "TeamsView displays all 20 national teams with original geometric monogram badges, then drills into France's 11-player squad in TeamDetailView.",
+    enter() {
+      state.inspectorTab = "trace";
+      navigate("analyzes", { segment: 2 });
+    },
+    subAction() {
+      navigate("team-detail", { teamId: TEAMS[1].team_id });
+    },
+  },
+  {
+    id: "players-filter",
+    title: "220-Player Directory & Normalized Filtering",
+    tourKey: "players",
+    durationMs: 4400,
+    subDelayMs: 1600,
+    narration: "PlayerListView loads all 220 real player identities and applies normalized Center/Central Midfielder + 85+ rating filtering with instant trace updates.",
+    enter() {
+      state.inspectorTab = "trace";
+      state.filters = { position: "All", country: "All", minRating: 0 };
+      navigate("analyzes", { segment: 3 });
+    },
+    subAction() {
+      state.filters = { position: "Center Midfielder", country: "All", minRating: 85 };
+      const filtered = getFilteredPlayers();
+      recordTrace({
+        source: "PlayerListView.filteredPlayers",
+        swiftView: "PlayerListView.swift (FilterMenuView)",
+        operation: `Filter → ${filtered.length} / ${PLAYERS.length} players`,
+        payload: { filters: { ...state.filters }, matching_count: filtered.length, sample: filtered.slice(0, 3).map((p) => p.name) },
+        note: "Guided tutorial applied normalized Center/Central Midfielder + 85+ rating filter across all 220 players.",
+      });
+      render();
+    },
+  },
+  {
+    id: "news-profile",
+    title: "News Stub & Authenticated Profile",
+    tourKey: "profile",
+    durationMs: 4400,
+    subDelayMs: 1600,
+    narration: "NewsView preserves the app's 2 static stub entries honestly, then ProfileView shows authenticated preference editing with Phase A password remediation.",
+    enter() {
+      state.inspectorTab = "trace";
+      if (!state.isLoggedIn) {
+        state.isLoggedIn = true;
+        state.username = "eurofan";
+        state.email = "fan@euro2024demo.example";
+      }
+      navigate("news");
+    },
+    subAction() {
+      navigate("profile");
+    },
+  },
+  {
+    id: "inspector",
+    title: "Firebase Data Inspector & Provenance",
+    tourKey: "matches",
+    durationMs: 4400,
+    subDelayMs: 1800,
+    narration: "The right-hand inspector records simulated Firestore traces and documents exact bundled dataset provenance (not live or official UEFA Euro 2024 data).",
+    enter() {
+      state.inspectorTab = "trace";
+      render();
+    },
+    subAction() {
+      state.inspectorTab = "data";
+      render();
+    },
+  },
+  {
+    id: "finish",
+    title: "Walkthrough Complete — Explore Manually",
+    tourKey: "landing",
+    durationMs: 0,
+    narration: "Guided walkthrough complete. Replay anytime, or exit to explore every match timeline, team squad, 220-player filter, and Firebase trace manually.",
+    enter() {
+      state.inspectorTab = "trace";
+      state.filters = { position: "All", country: "All", minRating: 0 };
+      navigate("landing");
+    },
+  },
+];
+
+const MIN_TUTORIAL_PHONE_SCALE = 0.68;
+
+const tutorial = {
+  active: false,
+  playing: false,
+  completed: false,
+  stageIndex: 0,
+  subActionDone: false,
+  runId: 0,
+  stageTimer: null,
+  subTimer: null,
+  userScrolledAway: false,
+  lastGuidedScrollY: null,
+  scrollStartY: null,
+  programmaticScrollUntil: 0,
+  resizeIgnoreScrollUntil: 0,
+  lastViewportW: null,
+  lastViewportH: null,
+  resizeRafId: null,
+  resizeSettleTimer: null,
+  phoneScale: 1,
+};
+
+const topbarEl = document.querySelector?.(".topbar") || null;
+const phoneStageEl = document.querySelector?.(".phone-stage") || null;
+const phoneBezelEl = document.querySelector?.(".phone-bezel") || null;
+const inspectorShellEl = document.querySelector?.(".inspector-shell") || null;
+const tutorialControlsEl = document.querySelector?.(".tutorial-controls") || null;
+
+const btnWatchTutorial = document.getElementById("btnWatchTutorial");
+const tutorialDock = document.getElementById("tutorialDock");
+const tutorialStepBadge = document.getElementById("tutorialStepBadge");
+const tutorialStateBadge = document.getElementById("tutorialStateBadge");
+const tutorialStageTitle = document.getElementById("tutorialStageTitle");
+const tutorialProgress = document.getElementById("tutorialProgress");
+const tutorialProgressFill = document.getElementById("tutorialProgressFill");
+const tutorialNarration = document.getElementById("tutorialNarration");
+const btnTutPrev = document.getElementById("btnTutPrev");
+const btnTutPlayPause = document.getElementById("btnTutPlayPause");
+const btnTutNext = document.getElementById("btnTutNext");
+const btnTutRestart = document.getElementById("btnTutRestart");
+const btnTutExit = document.getElementById("btnTutExit");
+
+function getCurrentScrollY() {
+  return Number(window.scrollY ?? window.pageYOffset ?? 0);
+}
+
+function getViewportWidth() {
+  return Number(window.innerWidth || document.documentElement?.clientWidth || 0);
+}
+
+function getViewportHeight() {
+  return Number(window.innerHeight || document.documentElement?.clientHeight || 0);
+}
+
+function cancelPendingResizeFrame() {
+  if (tutorial.resizeRafId !== null && typeof window.cancelAnimationFrame === "function") {
+    window.cancelAnimationFrame(tutorial.resizeRafId);
+  }
+  tutorial.resizeRafId = null;
+  if (tutorial.resizeSettleTimer !== null) {
+    window.clearTimeout(tutorial.resizeSettleTimer);
+    tutorial.resizeSettleTimer = null;
+  }
+}
+
+function getStickyHeaderClearance() {
+  const defaultPad = (window.innerWidth || 1200) <= 640 ? 10 : 12;
+  if (!topbarEl || typeof topbarEl.getBoundingClientRect !== "function") {
+    return defaultPad;
+  }
+  const rect = topbarEl.getBoundingClientRect();
+  if (getCurrentScrollY() > 4) {
+    return rect.top >= -2 && rect.bottom > 0 ? Math.ceil(rect.bottom) + 10 : defaultPad;
+  }
+  if (typeof window.getComputedStyle === "function") {
+    const pos = window.getComputedStyle(topbarEl).position;
+    if (pos === "fixed") return Math.ceil(rect.height) + 10;
+    if (pos === "sticky") {
+      const htmlOverflowX = document.documentElement ? window.getComputedStyle(document.documentElement).overflowX : "";
+      const bodyOverflowX = document.body ? window.getComputedStyle(document.body).overflowX : "";
+      if (htmlOverflowX !== "hidden" && bodyOverflowX !== "hidden") {
+        return Math.ceil(rect.height) + 10;
+      }
+    }
+  }
+  return defaultPad;
+}
+
+function resetTutorialPhoneScale() {
+  tutorial.phoneScale = 1;
+  if (phoneStageEl?.style) {
+    if (typeof phoneStageEl.style.removeProperty === "function") {
+      phoneStageEl.style.removeProperty("--phone-scale");
+      phoneStageEl.style.removeProperty("--phone-fit-h");
+    } else {
+      delete phoneStageEl.style["--phone-scale"];
+      delete phoneStageEl.style["--phone-fit-h"];
+    }
+  }
+  if (phoneStageEl?.dataset) {
+    delete phoneStageEl.dataset.tutorialScaled;
+  }
+}
+
+function updateTutorialPhoneScale() {
+  if (!tutorial.active) {
+    resetTutorialPhoneScale();
+    return 1;
+  }
+  if (!phoneStageEl || !phoneBezelEl || !tutorialDock) return 1;
+
+  const vh = getViewportHeight();
+  if (vh <= 0) return 1;
+
+  const vw = getViewportWidth() || 1200;
+  const safeTop = getStickyHeaderClearance();
+  const dockHeight = typeof tutorialDock.getBoundingClientRect === "function"
+    ? tutorialDock.getBoundingClientRect().height
+    : 0;
+  let dockGap = vw <= 640 ? 14 : 20;
+  if (typeof window.getComputedStyle === "function") {
+    const parsedMargin = Number.parseFloat(window.getComputedStyle(tutorialDock).marginBottom);
+    if (Number.isFinite(parsedMargin) && parsedMargin >= 0) {
+      dockGap = parsedMargin;
+    }
+  }
+  const bottomReserve = vw <= 640 ? 12 : 16;
+
+  // Measure untransformed layout height (offsetHeight) so repeated calls never compound scaling.
+  const baseH = Number(phoneBezelEl.offsetHeight) || (vw <= 520 ? 728 : 774);
+  if (baseH <= 0) return 1;
+
+  const availableForPhoneH = vh - safeTop - dockHeight - dockGap - bottomReserve;
+  const rawScale = availableForPhoneH / baseH;
+  const clampedScale = Math.max(MIN_TUTORIAL_PHONE_SCALE, Math.min(1, Number(rawScale.toFixed(4))));
+
+  tutorial.phoneScale = clampedScale;
+  if (phoneStageEl.style) {
+    const fitH = `${Math.ceil(baseH * clampedScale)}px`;
+    if (typeof phoneStageEl.style.setProperty === "function") {
+      phoneStageEl.style.setProperty("--phone-scale", String(clampedScale));
+      phoneStageEl.style.setProperty("--phone-fit-h", fitH);
+    } else {
+      phoneStageEl.style["--phone-scale"] = String(clampedScale);
+      phoneStageEl.style["--phone-fit-h"] = fitH;
+    }
+  }
+  if (phoneStageEl.dataset) {
+    phoneStageEl.dataset.tutorialScaled = clampedScale < 0.999 ? "true" : "false";
+  }
+  return clampedScale;
+}
+
+function getVisibleFraction(el, safeTop, vh) {
+  if (!el || typeof el.getBoundingClientRect !== "function" || vh <= 0) return 1;
+  const rect = el.getBoundingClientRect();
+  if (rect.height <= 0) return 1;
+  const visiblePx = Math.max(0, Math.min(vh, rect.bottom) - Math.max(safeTop, rect.top));
+  return visiblePx / rect.height;
+}
+
+function performGuidedScroll(targetY, { instant = false } = {}) {
+  if (typeof window.scrollTo !== "function") return;
+  const vh = getViewportHeight();
+  const docScrollHeight = Number(document.documentElement?.scrollHeight || 0);
+  const maxScrollY = docScrollHeight > vh && vh > 0 ? Math.max(0, docScrollHeight - vh) : Infinity;
+  const clampedTarget = Math.max(0, Math.min(maxScrollY, Math.round(targetY)));
+  const currentY = getCurrentScrollY();
+  tutorial.lastViewportW = getViewportWidth();
+  tutorial.lastViewportH = vh;
+  if (Math.abs(clampedTarget - currentY) < 4) {
+    tutorial.lastGuidedScrollY = Math.round(currentY);
+    return;
+  }
+  const reduceMotion = Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches);
+  const useInstant = reduceMotion || instant;
+  tutorial.scrollStartY = currentY;
+  tutorial.lastGuidedScrollY = clampedTarget;
+  tutorial.programmaticScrollUntil = Date.now() + (useInstant ? 80 : 750);
+  window.scrollTo({
+    top: clampedTarget,
+    behavior: useInstant ? "auto" : "smooth",
+  });
+  if (Math.abs(getCurrentScrollY() - clampedTarget) <= 4) {
+    tutorial.programmaticScrollUntil = 0;
+  }
+}
+
+function ensureTutorialViewportVisible({ reason = "auto", stage = null } = {}) {
+  if (!tutorial.active) return;
+  if (typeof window.scrollTo !== "function") return;
+  if ((reason === "auto" || reason === "resize") && tutorial.userScrolledAway) return;
+
+  const vh = getViewportHeight();
+  if (vh <= 0) return;
+  const safeTop = getStickyHeaderClearance();
+  const scrollY = getCurrentScrollY();
+  const instant = reason === "resize";
+
+  if (stage?.id === "inspector" && inspectorShellEl && typeof inspectorShellEl.getBoundingClientRect === "function") {
+    const inspRect = inspectorShellEl.getBoundingClientRect();
+    const inspVis = getVisibleFraction(inspectorShellEl, safeTop, vh);
+    if (inspRect.top >= safeTop - 4 && inspVis >= 0.7) {
+      return;
+    }
+    performGuidedScroll(scrollY + inspRect.top - safeTop, { instant });
+    return;
+  }
+
+  if (!tutorialDock || typeof tutorialDock.getBoundingClientRect !== "function") return;
+  const dockRect = tutorialDock.getBoundingClientRect();
+  const phoneRect = phoneBezelEl && typeof phoneBezelEl.getBoundingClientRect === "function"
+    ? phoneBezelEl.getBoundingClientRect()
+    : null;
+
+  const combinedHeight = phoneRect ? Math.max(dockRect.height, phoneRect.bottom - dockRect.top) : dockRect.height;
+  const canFitBoth = combinedHeight <= vh - safeTop + 2;
+  const dockFullyVisible = dockRect.top >= safeTop - 2 && dockRect.bottom <= vh + 1;
+  const phoneFullyVisible = phoneRect ? (phoneRect.top >= safeTop - 2 && phoneRect.bottom <= vh + 1) : true;
+
+  if (reason !== "start" && canFitBoth && dockFullyVisible && phoneFullyVisible) {
+    return;
+  }
+
+  let targetY = Math.max(0, scrollY + dockRect.top - safeTop);
+
+  if (!canFitBoth && phoneRect && phoneRect.height > 0) {
+    const projectedPhoneTop = scrollY + phoneRect.top - targetY;
+    const projectedVisible = Math.max(
+      0,
+      Math.min(vh, projectedPhoneTop + phoneRect.height) - Math.max(safeTop, projectedPhoneTop),
+    );
+    if (projectedVisible / phoneRect.height < 0.55) {
+      const controlsRect = tutorialControlsEl?.getBoundingClientRect();
+      const anchorTop = controlsRect && controlsRect.height < vh - safeTop
+        ? Math.min(controlsRect.top, phoneRect.top)
+        : phoneRect.top;
+      targetY = Math.max(0, scrollY + anchorTop - safeTop);
+    }
+  }
+
+  performGuidedScroll(targetY, { instant });
+}
+
+if (typeof window.addEventListener === "function") {
+  const SCROLL_KEYS = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+  const markManualScrollIntent = (e) => {
+    if (!tutorial.active) return;
+    if (phoneBody && typeof phoneBody.contains === "function" && e?.target && phoneBody.contains(e.target)) {
+      return;
+    }
+    tutorial.programmaticScrollUntil = 0;
+    tutorial.resizeIgnoreScrollUntil = 0;
+  };
+  window.addEventListener("wheel", markManualScrollIntent, { passive: true });
+  window.addEventListener("touchmove", markManualScrollIntent, { passive: true });
+  window.addEventListener(
+    "keydown",
+    (e) => {
+      if (e && SCROLL_KEYS.has(e.key)) {
+        markManualScrollIntent(e);
+      }
+    },
+    { passive: true },
+  );
+
+  const handleTutorialResize = () => {
+    if (!tutorial.active) return;
+    tutorial.lastViewportW = getViewportWidth();
+    tutorial.lastViewportH = getViewportHeight();
+    tutorial.resizeIgnoreScrollUntil = Date.now() + 260;
+
+    const applySettledResize = () => {
+      tutorial.resizeRafId = null;
+      if (!tutorial.active) return;
+      tutorial.lastViewportW = getViewportWidth();
+      tutorial.lastViewportH = getViewportHeight();
+      tutorial.resizeIgnoreScrollUntil = Date.now() + 260;
+      updateTutorialPhoneScale();
+      if (!tutorial.userScrolledAway) {
+        const stage = TUTORIAL_STAGES[tutorial.stageIndex];
+        ensureTutorialViewportVisible({ reason: "resize", stage });
+      }
+    };
+
+    cancelPendingResizeFrame();
+    if (typeof window.requestAnimationFrame === "function") {
+      tutorial.resizeRafId = window.requestAnimationFrame(applySettledResize);
+    } else {
+      applySettledResize();
+    }
+    tutorial.resizeSettleTimer = window.setTimeout(() => {
+      tutorial.resizeSettleTimer = null;
+      applySettledResize();
+    }, 120);
+  };
+  window.addEventListener("resize", handleTutorialResize, { passive: true });
+  window.visualViewport?.addEventListener?.("resize", handleTutorialResize, { passive: true });
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!tutorial.active || tutorial.lastGuidedScrollY === null) return;
+      const curW = getViewportWidth();
+      const curH = getViewportHeight();
+      if (
+        (tutorial.lastViewportW !== null && curW !== tutorial.lastViewportW) ||
+        (tutorial.lastViewportH !== null && curH !== tutorial.lastViewportH)
+      ) {
+        return;
+      }
+      if (Date.now() < tutorial.resizeIgnoreScrollUntil) {
+        return;
+      }
+      const curY = getCurrentScrollY();
+      const dist = Math.abs(curY - tutorial.lastGuidedScrollY);
+      if (Date.now() < tutorial.programmaticScrollUntil) {
+        if (dist <= 4) {
+          tutorial.programmaticScrollUntil = 0;
+          return;
+        }
+        if (tutorial.scrollStartY !== null) {
+          const intendedDelta = tutorial.lastGuidedScrollY - tutorial.scrollStartY;
+          const movedWrongWay =
+            (intendedDelta > 0 && curY < tutorial.scrollStartY - 24) ||
+            (intendedDelta < 0 && curY > tutorial.scrollStartY + 24);
+          const overshot =
+            (intendedDelta > 0 && curY > tutorial.lastGuidedScrollY + 40) ||
+            (intendedDelta < 0 && curY < tutorial.lastGuidedScrollY - 40);
+          if (movedWrongWay || overshot) {
+            tutorial.programmaticScrollUntil = 0;
+            tutorial.userScrolledAway = true;
+          }
+        }
+        return;
+      }
+      if (dist > 28) {
+        tutorial.userScrolledAway = true;
+      }
+    },
+    { passive: true },
+  );
+}
+
+function clearTutorialTimers() {
+  if (tutorial.stageTimer !== null) {
+    window.clearTimeout(tutorial.stageTimer);
+    tutorial.stageTimer = null;
+  }
+  if (tutorial.subTimer !== null) {
+    window.clearTimeout(tutorial.subTimer);
+    tutorial.subTimer = null;
+  }
+}
+
+function updateTutorialUI() {
+  if (!tutorialDock) return;
+  tutorialDock.hidden = !tutorial.active;
+  if (btnWatchTutorial) {
+    btnWatchTutorial.setAttribute("aria-expanded", String(tutorial.active));
+  }
+  if (!tutorial.active) return;
+
+  const total = TUTORIAL_STAGES.length;
+  const stage = TUTORIAL_STAGES[tutorial.stageIndex];
+  const stepNum = tutorial.stageIndex + 1;
+  const pct = Math.round((stepNum / total) * 100);
+
+  tutorialStepBadge.textContent = `Stage ${stepNum} / ${total}`;
+  tutorialStageTitle.textContent = stage.title;
+  tutorialNarration.textContent = stage.narration;
+
+  if (tutorial.completed) {
+    tutorialStateBadge.textContent = "Complete";
+    tutorialStateBadge.dataset.state = "complete";
+    btnTutPlayPause.textContent = "Replay";
+    btnTutPlayPause.setAttribute("aria-pressed", "false");
+  } else if (tutorial.playing) {
+    tutorialStateBadge.textContent = "Playing";
+    tutorialStateBadge.dataset.state = "playing";
+    btnTutPlayPause.textContent = "Pause";
+    btnTutPlayPause.setAttribute("aria-pressed", "true");
+  } else {
+    tutorialStateBadge.textContent = "Paused";
+    tutorialStateBadge.dataset.state = "paused";
+    btnTutPlayPause.textContent = "Play";
+    btnTutPlayPause.setAttribute("aria-pressed", "false");
+  }
+
+  tutorialProgress.setAttribute("aria-valuenow", String(stepNum));
+  tutorialProgress.setAttribute("aria-valuemax", String(total));
+  tutorialProgressFill.style.width = `${pct}%`;
+
+  btnTutPrev.disabled = tutorial.stageIndex === 0;
+  btnTutNext.disabled = tutorial.stageIndex === total - 1;
+}
+
+function scheduleCurrentStage(runId) {
+  if (!tutorial.active || !tutorial.playing) return;
+  const stage = TUTORIAL_STAGES[tutorial.stageIndex];
+  const reduceMotion = Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches);
+
+  if (typeof stage.subAction === "function" && !tutorial.subActionDone) {
+    const subWait = reduceMotion ? 220 : (stage.subDelayMs || 1500);
+    tutorial.subTimer = window.setTimeout(() => {
+      tutorial.subTimer = null;
+      if (!tutorial.active || !tutorial.playing || tutorial.runId !== runId || tutorial.subActionDone) return;
+      tutorial.subActionDone = true;
+      stage.subAction();
+    }, subWait);
+  }
+
+  if (tutorial.stageIndex < TUTORIAL_STAGES.length - 1) {
+    const waitMs = reduceMotion ? Math.max(1800, Math.round(stage.durationMs * 0.7)) : stage.durationMs;
+    tutorial.stageTimer = window.setTimeout(() => {
+      tutorial.stageTimer = null;
+      if (!tutorial.active || !tutorial.playing || tutorial.runId !== runId) return;
+      goToTutorialStage(tutorial.stageIndex + 1, { autoPlay: true });
+    }, waitMs);
+  }
+}
+
+function goToTutorialStage(index, { autoPlay = tutorial.playing, scrollReason = "auto" } = {}) {
+  clearTutorialTimers();
+  tutorial.runId += 1;
+  const currentRunId = tutorial.runId;
+
+  const clamped = Math.max(0, Math.min(TUTORIAL_STAGES.length - 1, index));
+  const isLast = clamped === TUTORIAL_STAGES.length - 1;
+
+  tutorial.active = true;
+  tutorial.stageIndex = clamped;
+  tutorial.subActionDone = false;
+  tutorial.completed = isLast;
+  tutorial.playing = isLast ? false : Boolean(autoPlay);
+
+  const stage = TUTORIAL_STAGES[clamped];
+  stage.enter();
+  updateTutorialUI();
+  updateTutorialPhoneScale();
+  ensureTutorialViewportVisible({ reason: scrollReason, stage });
+  announce(`Tutorial stage ${clamped + 1} of ${TUTORIAL_STAGES.length}: ${stage.title}.`);
+
+  if (!isLast && tutorial.playing) {
+    scheduleCurrentStage(currentRunId);
+  }
+}
+
+function startTutorial() {
+  clearTutorialTimers();
+  cancelPendingResizeFrame();
+  tutorial.userScrolledAway = false;
+  tutorial.lastGuidedScrollY = null;
+  tutorial.scrollStartY = null;
+  tutorial.programmaticScrollUntil = 0;
+  tutorial.resizeIgnoreScrollUntil = 0;
+  tutorial.lastViewportW = getViewportWidth();
+  tutorial.lastViewportH = getViewportHeight();
+  state = createInitialState();
+  goToTutorialStage(0, { autoPlay: true, scrollReason: "start" });
+}
+
+function pauseTutorial({ silent = false } = {}) {
+  if (!tutorial.active || !tutorial.playing) return;
+  clearTutorialTimers();
+  tutorial.runId += 1;
+  tutorial.playing = false;
+  updateTutorialUI();
+  if (!silent) announce("Tutorial paused.");
+}
+
+function resumeTutorial() {
+  if (!tutorial.active || tutorial.completed || tutorial.stageIndex >= TUTORIAL_STAGES.length - 1) {
+    startTutorial();
+    return;
+  }
+  if (tutorial.playing) return;
+  clearTutorialTimers();
+  tutorial.runId += 1;
+  tutorial.playing = true;
+  updateTutorialUI();
+  announce("Tutorial resumed.");
+  scheduleCurrentStage(tutorial.runId);
+}
+
+function exitTutorial({ silent = false } = {}) {
+  if (!tutorial.active && tutorial.stageTimer === null && tutorial.subTimer === null) return;
+  if (Date.now() < tutorial.programmaticScrollUntil && typeof window.scrollTo === "function") {
+    window.scrollTo({ top: getCurrentScrollY(), behavior: "instant" });
+  }
+  clearTutorialTimers();
+  cancelPendingResizeFrame();
+  tutorial.runId += 1;
+  tutorial.active = false;
+  tutorial.playing = false;
+  tutorial.subActionDone = false;
+  tutorial.completed = false;
+  tutorial.userScrolledAway = false;
+  tutorial.lastGuidedScrollY = null;
+  tutorial.scrollStartY = null;
+  tutorial.programmaticScrollUntil = 0;
+  tutorial.resizeIgnoreScrollUntil = 0;
+  tutorial.lastViewportW = null;
+  tutorial.lastViewportH = null;
+  resetTutorialPhoneScale();
+  updateTutorialUI();
+  if (!silent) {
+    announce("Exited guided tutorial. Exploring manually.");
+    btnWatchTutorial?.focus({ preventScroll: true });
+  }
+}
+
+// Persistent Topbar, Tutorial, Tour & Inspector Tab wiring
+btnWatchTutorial?.addEventListener("click", () => {
+  startTutorial();
+  btnTutPlayPause?.focus({ preventScroll: true });
+});
+
+btnTutPlayPause?.addEventListener("click", () => {
+  if (tutorial.completed) {
+    startTutorial();
+  } else if (tutorial.playing) {
+    pauseTutorial();
+  } else {
+    resumeTutorial();
+  }
+});
+
+btnTutPrev?.addEventListener("click", () => {
+  if (!tutorial.active || tutorial.stageIndex <= 0) return;
+  goToTutorialStage(tutorial.stageIndex - 1, { autoPlay: false, scrollReason: "step" });
+});
+
+btnTutNext?.addEventListener("click", () => {
+  if (!tutorial.active || tutorial.stageIndex >= TUTORIAL_STAGES.length - 1) return;
+  goToTutorialStage(tutorial.stageIndex + 1, { autoPlay: false, scrollReason: "step" });
+});
+
+btnTutRestart?.addEventListener("click", () => {
+  startTutorial();
+});
+
+btnTutExit?.addEventListener("click", () => {
+  exitTutorial();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && tutorial.active) {
+    exitTutorial();
+  }
+});
+
+// Pause auto-advance safely if user interacts directly inside the phone frame
+phoneBody?.addEventListener("pointerdown", () => {
+  if (tutorial.active && tutorial.playing) pauseTutorial({ silent: true });
+});
+
 document.querySelectorAll(".tour-pill").forEach((pill) => {
   pill.addEventListener("click", () => {
+    if (tutorial.active) exitTutorial({ silent: true });
     const t = pill.dataset.tour;
     state.inspectorTab = "trace";
     if (t === "landing") navigate("landing");
@@ -1213,12 +1930,14 @@ document.querySelectorAll(".tour-pill").forEach((pill) => {
 const inspectorTabs = Array.from(document.querySelectorAll(".inspector-tab"));
 inspectorTabs.forEach((tab, idx) => {
   tab.addEventListener("click", () => {
+    if (tutorial.active && tutorial.playing) pauseTutorial({ silent: true });
     state.inspectorTab = tab.dataset.inspector;
     render();
   });
   tab.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
       e.preventDefault();
+      if (tutorial.active && tutorial.playing) pauseTutorial({ silent: true });
       const next = e.key === "ArrowRight" ? (idx + 1) % inspectorTabs.length : (idx - 1 + inspectorTabs.length) % inspectorTabs.length;
       state.inspectorTab = inspectorTabs[next].dataset.inspector;
       render();
@@ -1228,6 +1947,7 @@ inspectorTabs.forEach((tab, idx) => {
 });
 
 btnToggleAuth.addEventListener("click", () => {
+  if (tutorial.active && tutorial.playing) pauseTutorial({ silent: true });
   if (state.isLoggedIn) {
     state.isLoggedIn = false;
     state.username = "";
@@ -1243,9 +1963,38 @@ btnToggleAuth.addEventListener("click", () => {
 });
 
 document.getElementById("btnResetDemo").addEventListener("click", () => {
+  if (tutorial.active) exitTutorial({ silent: true });
+  clearTutorialTimers();
+  cancelPendingResizeFrame();
   state = createInitialState();
   announce("Demo session reset to initial state.");
-  render();
+  navigate("landing");
 });
+
+// Deterministic read-only inspection handle for automated verification
+window.__EURO_TUTORIAL__ = {
+  getState: () => ({
+    active: tutorial.active,
+    playing: tutorial.playing,
+    completed: tutorial.completed,
+    stageIndex: tutorial.stageIndex,
+    stageId: TUTORIAL_STAGES[tutorial.stageIndex]?.id || null,
+    subActionDone: tutorial.subActionDone,
+    userScrolledAway: tutorial.userScrolledAway,
+    lastGuidedScrollY: tutorial.lastGuidedScrollY,
+    phoneScale: tutorial.phoneScale,
+    totalStages: TUTORIAL_STAGES.length,
+    hasPendingTimers: tutorial.stageTimer !== null || tutorial.subTimer !== null || tutorial.resizeSettleTimer !== null,
+    screen: state.screen,
+    analyzesSegment: state.analyzesSegment,
+    isLoggedIn: state.isLoggedIn,
+    selectedMatchId: state.selectedMatchId,
+    selectedTeamId: state.selectedTeamId,
+    inspectorTab: state.inspectorTab,
+    filters: { ...state.filters },
+    filteredPlayersCount: getFilteredPlayers().length,
+  }),
+  stages: TUTORIAL_STAGES.map((s, idx) => ({ index: idx, id: s.id, title: s.title, tourKey: s.tourKey })),
+};
 
 navigate("landing");

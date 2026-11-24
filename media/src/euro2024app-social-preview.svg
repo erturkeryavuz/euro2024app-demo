@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" fill="none">
+  <defs>
+    <!-- Foundation Obsidian & Editorial Studio Lighting -->
+    <linearGradient id="spBg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0D12" />
+      <stop offset="55%" stop-color="#111620" />
+      <stop offset="100%" stop-color="#090C10" />
+    </linearGradient>
+
+    <radialGradient id="spPitchHalo" cx="920" cy="312" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2E8B57" stop-opacity="0.24" />
+      <stop offset="42%" stop-color="#1D4ED8" stop-opacity="0.12" />
+      <stop offset="76%" stop-color="#B49A78" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#0A0D12" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="spLeftGlow" cx="230" cy="280" r="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B49A78" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#0A0D12" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="spEmblemGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4CC983" />
+      <stop offset="52%" stop-color="#237A4B" />
+      <stop offset="100%" stop-color="#102C4A" />
+    </linearGradient>
+
+    <linearGradient id="spCardBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1E3A" />
+      <stop offset="42%" stop-color="#132B4F" />
+      <stop offset="76%" stop-color="#0D262B" />
+      <stop offset="100%" stop-color="#08121B" />
+    </linearGradient>
+
+    <linearGradient id="spCardBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EBD0A4" stop-opacity="0.96" />
+      <stop offset="38%" stop-color="#56B881" stop-opacity="0.84" />
+      <stop offset="72%" stop-color="#B49A78" stop-opacity="0.72" />
+      <stop offset="100%" stop-color="#60A5FA" stop-opacity="0.88" />
+    </linearGradient>
+
+    <radialGradient id="spCardCore" cx="0.5" cy="0.34" r="0.58">
+      <stop offset="0%" stop-color="#56B881" stop-opacity="0.32" />
+      <stop offset="50%" stop-color="#1D4ED8" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#08121B" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="spGoldTrim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6DFB5" />
+      <stop offset="52%" stop-color="#C9A875" />
+      <stop offset="100%" stop-color="#8C7352" />
+    </linearGradient>
+
+    <linearGradient id="spPhoneBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A2029" />
+      <stop offset="100%" stop-color="#10141B" />
+    </linearGradient>
+
+    <filter id="spShadowHeavy" x="-20%" y="-20%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000000" flood-opacity="0.70" />
+    </filter>
+    <filter id="spShadowMed" x="-18%" y="-18%" width="136%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.52" />
+    </filter>
+
+    <clipPath id="spCanvasClip">
+      <rect x="0" y="0" width="1280" height="640" />
+    </clipPath>
+    <clipPath id="spCardClip">
+      <rect x="790" y="96" width="260" height="398" rx="24" />
+    </clipPath>
+  </defs>
+
+  <!-- 1. CANVAS & STADIUM AMBIENCE -->
+  <g clip-path="url(#spCanvasClip)">
+    <rect width="1280" height="640" fill="url(#spBg)" />
+    <rect width="1280" height="640" fill="url(#spPitchHalo)" />
+    <rect width="1280" height="640" fill="url(#spLeftGlow)" />
+
+    <!-- Subtle Editorial Hairline & Pitch Arcs (Safe Area: x 84..1196, y 68..572) -->
+    <g stroke="#F1EDE5" stroke-opacity="0.05" stroke-width="1.2">
+      <rect x="30" y="30" width="1220" height="580" rx="16" />
+    </g>
+    <g stroke="#56B881" stroke-opacity="0.12" stroke-width="1.5">
+      <circle cx="920" cy="306" r="294" />
+      <circle cx="920" cy="306" r="204" stroke="#B49A78" stroke-opacity="0.09" stroke-dasharray="5 8" />
+      <line x1="612" y1="306" x2="1250" y2="306" stroke="#F1EDE5" stroke-opacity="0.06" />
+      <circle cx="0" cy="640" r="236" stroke="#758D92" stroke-opacity="0.08" />
+    </g>
+
+    <!-- 2. LEFT EDITORIAL BLOCK (Inside Safe Area: x >= 86, y 96..548) -->
+    <g id="sp-editorial">
+      <!-- Original Pitch-Ball Emblem -->
+      <circle cx="106" cy="126" r="19" fill="url(#spEmblemGrad)" stroke="#EBD0A4" stroke-opacity="0.6" stroke-width="1.3" />
+      <polygon points="106,117 114,123 111,132 101,132 98,123" fill="#0B131E" stroke="#F1EDE5" stroke-width="1.3" />
+      <g stroke="#F1EDE5" stroke-opacity="0.72" stroke-width="1.1">
+        <line x1="106" y1="117" x2="106" y2="108" />
+        <line x1="114" y1="123" x2="123" y2="119" />
+        <line x1="111" y1="132" x2="117" y2="140" />
+        <line x1="101" y1="132" x2="95" y2="140" />
+        <line x1="98" y1="123" x2="89" y2="119" />
+      </g>
+      <line x1="138" y1="126" x2="162" y2="126" stroke="#B49A78" stroke-width="1.5" />
+      <text x="174" y="131" fill="#B49A78" font-family="'SF Mono', 'Menlo', monospace" font-size="13.5" font-weight="600" letter-spacing="2.4">PORTFOLIO SHOWCASE</text>
+
+      <!-- Large Thumbnail-Legible Title -->
+      <text x="84" y="252" fill="#F1EDE5" font-family="'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="86" font-weight="700" letter-spacing="-2.4">Euro 2024</text>
+      <text x="84" y="344" fill="#C9B08C" font-family="'Iowan Old Style', 'Georgia', 'Times New Roman', serif" font-style="italic" font-size="90" font-weight="400" letter-spacing="-1.6">App</text>
+
+      <!-- Accent Rule -->
+      <rect x="86" y="376" width="66" height="3.5" rx="1.75" fill="#3FA66F" />
+      <rect x="160" y="377" width="128" height="1.2" fill="#B49A78" fill-opacity="0.38" />
+
+      <!-- Supporting Line -->
+      <text x="86" y="426" fill="#EAE5DC" font-family="'SF Pro Text', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="21.5" font-weight="500">SwiftUI iOS · Firebase Architecture</text>
+      <text x="86" y="458" fill="#B5AFA4" font-family="'SF Pro Text', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="21.5" font-weight="400">Match Timelines &amp; 220 Players</text>
+
+      <!-- High-Contrast Stack Pills -->
+      <g transform="translate(86, 496)">
+        <rect x="0" y="0" width="132" height="40" rx="20" fill="#171C23" stroke="#F1EDE5" stroke-opacity="0.18" />
+        <text x="66" y="25" text-anchor="middle" fill="#F1EDE5" font-family="'SF Mono', monospace" font-size="13" font-weight="600">SwiftUI iOS</text>
+
+        <rect x="144" y="0" width="142" height="40" rx="20" fill="#171C23" stroke="#F1EDE5" stroke-opacity="0.18" />
+        <text x="215" y="25" text-anchor="middle" fill="#F1EDE5" font-family="'SF Mono', monospace" font-size="13" font-weight="600">Firestore</text>
+
+        <rect x="298" y="0" width="136" height="40" rx="20" fill="#12261D" stroke="#56B881" stroke-opacity="0.62" />
+        <text x="366" y="25" text-anchor="middle" fill="#82E3AC" font-family="'SF Mono', monospace" font-size="13" font-weight="700">Live Demo</text>
+      </g>
+    </g>
+
+    <!-- 3. RIGHT VISUAL SHOWCASE CLUSTER (Safely Inside x 624..1204, y 96..558 — ZERO Clipped Letters!) -->
+
+    <!-- 3A. Back-Left Screen: Standings (x=624..798, Card starts at x=790 -> 8px frame overlap) -->
+    <g filter="url(#spShadowMed)" transform="translate(624, 124)">
+      <rect x="0" y="0" width="174" height="348" rx="24" fill="url(#spPhoneBg)" stroke="#F1EDE5" stroke-opacity="0.14" stroke-width="1.3" />
+      <rect x="58" y="12" width="58" height="12" rx="6" fill="#090B0E" />
+      <text x="16" y="48" fill="#B49A78" font-family="'SF Mono', monospace" font-size="9" letter-spacing="1.4">TABLE</text>
+      <text x="16" y="70" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="16" font-weight="700">Standings</text>
+
+      <!-- National Monograms (Fit comfortably inside x: 14..156) -->
+      <g transform="translate(14, 86)">
+        <rect x="0" y="0" width="142" height="48" rx="11" fill="#202631" />
+        <circle cx="23" cy="24" r="14" fill="#161922" stroke="#FACC15" stroke-width="1.6" />
+        <text x="23" y="27.5" text-anchor="middle" fill="#FDE047" font-family="'SF Pro Display', sans-serif" font-size="8.5" font-weight="800">BEL</text>
+        <text x="45" y="22" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">Belgium</text>
+        <text x="45" y="36" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="9">3 PTS · +3</text>
+      </g>
+
+      <g transform="translate(14, 144)">
+        <rect x="0" y="0" width="142" height="48" rx="11" fill="#202631" />
+        <circle cx="23" cy="24" r="14" fill="#14532D" stroke="#EF4444" stroke-width="1.6" />
+        <text x="23" y="27.5" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="8.5" font-weight="800">POR</text>
+        <text x="45" y="22" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">Portugal</text>
+        <text x="45" y="36" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="9">3 PTS · +2</text>
+      </g>
+
+      <g transform="translate(14, 202)">
+        <rect x="0" y="0" width="142" height="48" rx="11" fill="#202631" />
+        <circle cx="23" cy="24" r="14" fill="#1D4ED8" stroke="#93C5FD" stroke-width="1.6" />
+        <text x="23" y="27.5" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="8.5" font-weight="800">FRA</text>
+        <text x="45" y="22" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">France</text>
+        <text x="45" y="36" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="9">3 PTS · +1</text>
+      </g>
+
+      <g transform="translate(14, 260)">
+        <rect x="0" y="0" width="142" height="48" rx="11" fill="#202631" />
+        <circle cx="23" cy="24" r="14" fill="#181C24" stroke="#E5B75B" stroke-width="1.6" />
+        <text x="23" y="27.5" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="8.5" font-weight="800">GER</text>
+        <text x="45" y="22" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">Germany</text>
+        <text x="45" y="36" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="9">3 PTS · +1</text>
+      </g>
+    </g>
+
+    <!-- 3B. Back-Right Screen: Player Directory (x=1042..1204, Card ends at x=1050 -> 8px frame overlap) -->
+    <g filter="url(#spShadowMed)" transform="translate(1042, 124)">
+      <rect x="0" y="0" width="162" height="348" rx="24" fill="url(#spPhoneBg)" stroke="#F1EDE5" stroke-opacity="0.14" stroke-width="1.3" />
+      <rect x="52" y="12" width="58" height="12" rx="6" fill="#090B0E" />
+      <text x="18" y="48" fill="#B49A78" font-family="'SF Mono', monospace" font-size="9" letter-spacing="1.2">DIRECTORY</text>
+      <text x="18" y="70" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="16" font-weight="700">220 Players</text>
+
+      <!-- Squads Pill -->
+      <rect x="16" y="88" width="130" height="68" rx="12" fill="#142C24" stroke="#56B881" stroke-opacity="0.54" />
+      <text x="81" y="116" text-anchor="middle" fill="#EAFBF1" font-family="'SF Pro Display', sans-serif" font-size="13.5" font-weight="700">20 Squads</text>
+      <text x="81" y="137" text-anchor="middle" fill="#82E3AC" font-family="'SF Mono', monospace" font-size="10.5">11 PER TEAM</text>
+
+      <!-- Filters Pill -->
+      <rect x="16" y="168" width="130" height="68" rx="12" fill="#172742" stroke="#60A5FA" stroke-opacity="0.52" />
+      <text x="81" y="196" text-anchor="middle" fill="#EFF6FF" font-family="'SF Pro Display', sans-serif" font-size="13.5" font-weight="700">Midfielders</text>
+      <text x="81" y="217" text-anchor="middle" fill="#93C5FD" font-family="'SF Mono', monospace" font-size="10.5">OVR 85+ FILTER</text>
+
+      <!-- Fixtures Pill -->
+      <rect x="16" y="248" width="130" height="72" rx="12" fill="#231D15" stroke="#C9A875" stroke-opacity="0.62" />
+      <text x="81" y="276" text-anchor="middle" fill="#F5E5C8" font-family="'SF Pro Display', sans-serif" font-size="14" font-weight="700">5 Fixtures</text>
+      <text x="81" y="299" text-anchor="middle" fill="#D9BC8B" font-family="'SF Mono', monospace" font-size="10.5" font-weight="700">19 GOAL EVENTS</text>
+    </g>
+
+    <!-- 3C. FOREGROUND CENTERPIECE: Tournament Match Timeline Card (x=790..1050) -->
+    <g filter="url(#spShadowHeavy)">
+      <rect x="790" y="96" width="260" height="398" rx="24" fill="url(#spCardBg)" stroke="url(#spCardBorder)" stroke-width="2.4" />
+      <g clip-path="url(#spCardClip)">
+        <rect x="790" y="96" width="260" height="398" fill="url(#spCardCore)" />
+        <path d="M790 270 L1050 156 L1050 216 L790 330 Z" fill="#FFFFFF" fill-opacity="0.04" />
+        <circle cx="920" cy="242" r="90" stroke="#56B881" stroke-opacity="0.22" stroke-width="1.2" />
+        <rect x="800" y="106" width="240" height="378" rx="17" stroke="#F1EDE5" stroke-opacity="0.16" stroke-width="1" />
+
+        <!-- Top Status -->
+        <rect x="814" y="122" width="146" height="22" rx="11" fill="#0E2832" stroke="#56B881" stroke-opacity="0.52" />
+        <text x="887" y="137" text-anchor="middle" fill="#82E3AC" font-family="'SF Mono', monospace" font-size="9.5" font-weight="700" letter-spacing="1.1">SAMPLE FIXTURE</text>
+        <rect x="986" y="122" width="40" height="22" rx="11" fill="#1C2C49" stroke="#E8C99B" stroke-opacity="0.55" />
+        <text x="1006" y="137" text-anchor="middle" fill="#F4D7A7" font-family="'SF Mono', monospace" font-size="9.5" font-weight="700">FT</text>
+
+        <!-- Scoreboard: FRA 3 - 2 ITA -->
+        <g transform="translate(0, 174)">
+          <circle cx="842" cy="36" r="25" fill="#1D4ED8" stroke="url(#spGoldTrim)" stroke-width="1.8" />
+          <text x="842" y="40.5" text-anchor="middle" fill="#FFFFFF" font-family="'SF Pro Display', sans-serif" font-size="13" font-weight="800">FRA</text>
+          <text x="842" y="78" text-anchor="middle" fill="#DCE4F0" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">France</text>
+
+          <text x="920" y="48" text-anchor="middle" fill="#F7F4EE" font-family="'SF Pro Display', -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="-1.5">3–2</text>
+          <text x="920" y="78" text-anchor="middle" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10" font-weight="600">55% · 45%</text>
+
+          <circle cx="998" cy="36" r="25" fill="#15803D" stroke="url(#spGoldTrim)" stroke-width="1.8" />
+          <text x="998" y="40.5" text-anchor="middle" fill="#FFFFFF" font-family="'SF Pro Display', sans-serif" font-size="13" font-weight="800">ITA</text>
+          <text x="998" y="78" text-anchor="middle" fill="#DCE4F0" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">Italy</text>
+        </g>
+
+        <!-- Possession Bar -->
+        <g transform="translate(816, 268)">
+          <rect x="0" y="0" width="208" height="7" rx="3.5" fill="#102338" />
+          <rect x="0" y="0" width="115" height="7" rx="3.5" fill="#3B82F6" />
+          <rect x="119" y="0" width="89" height="7" rx="3.5" fill="#3FA66F" />
+        </g>
+
+        <!-- Lower Timeline Plate -->
+        <rect x="808" y="294" width="224" height="178" rx="14" fill="#081322" fill-opacity="0.92" stroke="#56B881" stroke-opacity="0.34" />
+        <rect x="838" y="306" width="164" height="22" rx="11" fill="#112C33" stroke="#56B881" stroke-opacity="0.60" />
+        <text x="920" y="321" text-anchor="middle" fill="#8AE6B2" font-family="'SF Mono', monospace" font-size="9.5" font-weight="700" letter-spacing="1.1">MATCH TIMELINE</text>
+
+        <line x1="920" y1="340" x2="920" y2="432" stroke="#B49A78" stroke-opacity="0.34" stroke-width="1.3" stroke-dasharray="3 4" />
+        <circle cx="920" cy="348" r="4" fill="#60A5FA" />
+        <text x="908" y="352" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11" font-weight="600">FRA</text>
+        <text x="932" y="352" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10">10'</text>
+
+        <circle cx="920" cy="368" r="4" fill="#60A5FA" />
+        <text x="908" y="372" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11" font-weight="600">FRA</text>
+        <text x="932" y="372" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10">30'</text>
+
+        <circle cx="920" cy="388" r="4" fill="#56B881" />
+        <text x="908" y="392" text-anchor="end" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10">45'</text>
+        <text x="932" y="392" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11" font-weight="600">ITA</text>
+
+        <circle cx="920" cy="408" r="4" fill="#60A5FA" />
+        <text x="908" y="412" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11" font-weight="600">FRA</text>
+        <text x="932" y="412" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10">55'</text>
+
+        <circle cx="920" cy="428" r="4" fill="#56B881" />
+        <text x="908" y="432" text-anchor="end" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10">70'</text>
+        <text x="932" y="432" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11" font-weight="600">ITA</text>
+
+        <text x="920" y="458" text-anchor="middle" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">WATCH TUTORIAL · INSPECTOR</text>
+      </g>
+    </g>
+
+    <!-- 3D. Bottom-Right Inspector Pill (Centered Under Showcase) -->
+    <g filter="url(#spShadowMed)" transform="translate(734, 514)">
+      <rect x="0" y="0" width="372" height="44" rx="22" fill="#141921" stroke="#B49A78" stroke-opacity="0.48" stroke-width="1.3" />
+      <circle cx="24" cy="22" r="5" fill="#56B881" />
+      <text x="40" y="27" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="13" font-weight="700">READ</text>
+      <text x="84" y="27" fill="#F1EDE5" font-family="'SF Mono', monospace" font-size="13" font-weight="600">collection("matches")</text>
+      <text x="264" y="27" fill="#B49A78" font-family="'SF Mono', monospace" font-size="12.5" font-weight="700">· OFFLINE</text>
+    </g>
+  </g>
+</svg>

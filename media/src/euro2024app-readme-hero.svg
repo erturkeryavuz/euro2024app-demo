@@ -1,0 +1,434 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" fill="none">
+  <defs>
+    <!-- Foundation Obsidian & Editorial Studio Lighting -->
+    <linearGradient id="bgBase" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0D12" />
+      <stop offset="52%" stop-color="#10151D" />
+      <stop offset="100%" stop-color="#090C10" />
+    </linearGradient>
+
+    <radialGradient id="pitchHalo" cx="1110" cy="430" r="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2E8B57" stop-opacity="0.22" />
+      <stop offset="38%" stop-color="#1D4ED8" stop-opacity="0.11" />
+      <stop offset="70%" stop-color="#B49A78" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#0A0D12" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="leftStudioGlow" cx="250" cy="340" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B49A78" stop-opacity="0.08" />
+      <stop offset="55%" stop-color="#2E8B57" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#0A0D12" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Football Emblem Fill -->
+    <linearGradient id="emblemGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4CC983" />
+      <stop offset="52%" stop-color="#237A4B" />
+      <stop offset="100%" stop-color="#102C4A" />
+    </linearGradient>
+
+    <!-- Centerpiece Tournament Match Card Surface -->
+    <linearGradient id="cardBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1E3A" />
+      <stop offset="42%" stop-color="#132B4F" />
+      <stop offset="76%" stop-color="#0D262B" />
+      <stop offset="100%" stop-color="#08121B" />
+    </linearGradient>
+
+    <linearGradient id="cardBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EBD0A4" stop-opacity="0.94" />
+      <stop offset="38%" stop-color="#56B881" stop-opacity="0.82" />
+      <stop offset="70%" stop-color="#B49A78" stop-opacity="0.72" />
+      <stop offset="100%" stop-color="#60A5FA" stop-opacity="0.86" />
+    </linearGradient>
+
+    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18" />
+      <stop offset="32%" stop-color="#FFFFFF" stop-opacity="0.03" />
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop offset="80%" stop-color="#56B881" stop-opacity="0.07" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+
+    <radialGradient id="cardCoreGlow" cx="0.5" cy="0.34" r="0.58">
+      <stop offset="0%" stop-color="#56B881" stop-opacity="0.30" />
+      <stop offset="48%" stop-color="#1D4ED8" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#08121B" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6DFB5" />
+      <stop offset="52%" stop-color="#C9A875" />
+      <stop offset="100%" stop-color="#8C7352" />
+    </linearGradient>
+
+    <!-- Mobile Screen Surface -->
+    <linearGradient id="phoneSurface" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#181D26" />
+      <stop offset="100%" stop-color="#10141B" />
+    </linearGradient>
+
+    <linearGradient id="phoneBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F1EDE5" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#56B881" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.06" />
+    </linearGradient>
+
+    <!-- Inspector Chip Surface -->
+    <linearGradient id="traceBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#171C23" stop-opacity="0.98" />
+      <stop offset="100%" stop-color="#0F1319" stop-opacity="0.98" />
+    </linearGradient>
+
+    <!-- Studio Drop Shadows -->
+    <filter id="shadowHeavy" x="-20%" y="-20%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#000000" flood-opacity="0.68" />
+    </filter>
+    <filter id="shadowMedium" x="-18%" y="-18%" width="136%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.52" />
+    </filter>
+    <filter id="shadowSoft" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <!-- Clip Paths -->
+    <clipPath id="cardClip">
+      <rect x="954" y="156" width="310" height="466" rx="26" />
+    </clipPath>
+    <clipPath id="canvasClip">
+      <rect x="0" y="0" width="1600" height="900" />
+    </clipPath>
+  </defs>
+
+  <!-- 1. BACKGROUND CANVAS -->
+  <g clip-path="url(#canvasClip)">
+    <rect width="1600" height="900" fill="url(#bgBase)" />
+    <rect width="1600" height="900" fill="url(#pitchHalo)" />
+    <rect width="1600" height="900" fill="url(#leftStudioGlow)" />
+
+    <!-- Subtle Editorial Architectural Frame -->
+    <g stroke="#F1EDE5" stroke-opacity="0.045" stroke-width="1.2">
+      <rect x="34" y="34" width="1532" height="832" rx="18" />
+      <line x1="654" y1="34" x2="654" y2="866" stroke-dasharray="4 8" />
+    </g>
+
+    <!-- Restrained Football Pitch Center-Circle & Touchline Geometry -->
+    <g stroke="#56B881" stroke-opacity="0.12" stroke-width="1.5">
+      <circle cx="1109" cy="436" r="405" />
+      <circle cx="1109" cy="436" r="278" stroke="#B49A78" stroke-opacity="0.09" stroke-dasharray="6 10" />
+      <line x1="654" y1="436" x2="1566" y2="436" stroke="#F1EDE5" stroke-opacity="0.06" />
+      <circle cx="0" cy="900" r="320" stroke="#758D92" stroke-opacity="0.08" />
+      <circle cx="1600" cy="0" r="270" stroke="#56B881" stroke-opacity="0.11" />
+    </g>
+
+    <!-- Corner Registration Ticks -->
+    <g stroke="#B49A78" stroke-opacity="0.35" stroke-width="1.5">
+      <path d="M54 70 L54 54 L70 54" />
+      <path d="M1546 70 L1546 54 L1530 54" />
+      <path d="M54 830 L54 846 L70 846" />
+      <path d="M1546 830 L1546 846 L1530 846" />
+    </g>
+
+    <!-- 2. LEFT EDITORIAL TYPOGRAPHY COLUMN -->
+    <g id="editorial-column">
+      <!-- Original Geometric Pitch-Ball Brand Emblem + Kicker -->
+      <circle cx="106" cy="212" r="20" fill="url(#emblemGrad)" stroke="#EBD0A4" stroke-opacity="0.6" stroke-width="1.3" />
+      <polygon points="106,202 115,209 112,219 100,219 97,209" fill="#0B131E" stroke="#F1EDE5" stroke-width="1.4" />
+      <g stroke="#F1EDE5" stroke-opacity="0.72" stroke-width="1.2">
+        <line x1="106" y1="202" x2="106" y2="192" />
+        <line x1="115" y1="209" x2="124" y2="205" />
+        <line x1="112" y1="219" x2="119" y2="227" />
+        <line x1="100" y1="219" x2="93" y2="227" />
+        <line x1="97" y1="209" x2="88" y2="205" />
+      </g>
+      <line x1="140" y1="212" x2="166" y2="212" stroke="#B49A78" stroke-width="1.5" />
+      <text x="178" y="217" fill="#B49A78" font-family="'SF Mono', 'Menlo', 'Monaco', monospace" font-size="13" font-weight="600" letter-spacing="2.4">SWIFTUI iOS &amp; FIREBASE SHOWCASE</text>
+
+      <!-- Main Hero Title -->
+      <text x="84" y="346" fill="#F1EDE5" font-family="'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="94" font-weight="700" letter-spacing="-2.6">Euro 2024</text>
+      <text x="84" y="446" fill="#C9B08C" font-family="'Iowan Old Style', 'Georgia', 'Times New Roman', serif" font-style="italic" font-size="98" font-weight="400" letter-spacing="-1.6">App</text>
+
+      <!-- Accent Hairline Divider -->
+      <rect x="86" y="484" width="68" height="3" rx="1.5" fill="#3FA66F" />
+      <rect x="162" y="485" width="144" height="1" fill="#B49A78" fill-opacity="0.35" />
+
+      <!-- Grounded Supporting Line -->
+      <text x="86" y="538" fill="#E6E1D7" font-family="'SF Pro Text', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="22.5" font-weight="500" letter-spacing="-0.2">iOS Football Companion  ·  Firebase Architecture</text>
+      <text x="86" y="572" fill="#A9A398" font-family="'SF Pro Text', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="22.5" font-weight="400" letter-spacing="-0.1">Match Timelines &amp; 220-Player Directory</text>
+
+      <!-- Concise Product Scope Summary -->
+      <text x="86" y="630" fill="#8C939C" font-family="'SF Pro Text', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="15.5" font-weight="400">
+        <tspan x="86" dy="0">Sample fixtures, unified standings, 20 national teams,</tspan>
+        <tspan x="86" dy="25">position &amp; rating filtering, and simulated Firestore traces.</tspan>
+      </text>
+
+      <!-- Architecture Metadata Strip -->
+      <g transform="translate(86, 706)">
+        <rect x="0" y="0" width="128" height="36" rx="18" fill="#171B22" stroke="#F1EDE5" stroke-opacity="0.14" />
+        <text x="64" y="23" text-anchor="middle" fill="#E4DFD5" font-family="'SF Mono', 'Menlo', monospace" font-size="12.5" font-weight="500">SwiftUI iOS</text>
+
+        <rect x="140" y="0" width="164" height="36" rx="18" fill="#171B22" stroke="#F1EDE5" stroke-opacity="0.14" />
+        <text x="222" y="23" text-anchor="middle" fill="#E4DFD5" font-family="'SF Mono', 'Menlo', monospace" font-size="12.5" font-weight="500">Firebase · Firestore</text>
+
+        <rect x="316" y="0" width="148" height="36" rx="18" fill="#12241C" stroke="#56B881" stroke-opacity="0.52" />
+        <text x="390" y="23" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', 'Menlo', monospace" font-size="12.5" font-weight="600">Watch Tutorial</text>
+      </g>
+
+      <!-- Subtle Attribution Line -->
+      <text x="86" y="796" fill="#6F7680" font-family="'SF Mono', 'Menlo', monospace" font-size="12" letter-spacing="1.2">ERTÜRK ERYAVUZ  ·  INTERACTIVE PORTFOLIO SHOWCASE</text>
+    </g>
+
+    <!-- 3. RIGHT-SIDE PRODUCT SHOWCASE COMPOSITION (Zero Clipped Text Across All 3 Layers) -->
+
+    <!-- 3A. BACK-LEFT MOBILE SCREEN: Standings & National Teams (x=688..964, Card starts at x=954 -> 10px edge overlap) -->
+    <g id="screen-standings" filter="url(#shadowMedium)" transform="translate(688, 122)">
+      <rect x="0" y="0" width="276" height="536" rx="34" fill="url(#phoneSurface)" stroke="url(#phoneBorder)" stroke-width="1.5" />
+      <!-- Dynamic Island + Status -->
+      <text x="24" y="30" fill="#A9B0BA" font-family="'SF Pro Text', -apple-system, sans-serif" font-size="11" font-weight="600">9:41</text>
+      <rect x="102" y="16" width="72" height="19" rx="9.5" fill="#090B0E" />
+      <text x="228" y="30" fill="#A9B0BA" font-family="'SF Pro Text', -apple-system, sans-serif" font-size="10.5" font-weight="600">5G</text>
+
+      <!-- Screen Header -->
+      <text x="20" y="68" fill="#B49A78" font-family="'SF Mono', monospace" font-size="9.5" letter-spacing="1.6">SWIFTUI · LEAGUE TABLE</text>
+      <text x="20" y="94" fill="#F1EDE5" font-family="'SF Pro Display', -apple-system, sans-serif" font-size="21" font-weight="700">Standings</text>
+
+      <!-- Scoring Strip -->
+      <g transform="translate(20, 110)">
+        <rect x="0" y="0" width="84" height="24" rx="12" fill="#2E8B57" />
+        <text x="42" y="15.5" text-anchor="middle" fill="#F4FBF6" font-family="'SF Pro Text', sans-serif" font-size="10.5" font-weight="700">20 Teams</text>
+
+        <rect x="92" y="0" width="66" height="24" rx="12" fill="#212732" stroke="#F1EDE5" stroke-opacity="0.10" />
+        <text x="125" y="15.5" text-anchor="middle" fill="#C9C4BA" font-family="'SF Mono', monospace" font-size="10">W: 3 PTS</text>
+
+        <rect x="164" y="0" width="64" height="24" rx="12" fill="#212732" stroke="#F1EDE5" stroke-opacity="0.10" />
+        <text x="196" y="15.5" text-anchor="middle" fill="#C9C4BA" font-family="'SF Mono', monospace" font-size="10">D: 1 PT</text>
+      </g>
+
+      <!-- Top 4 Standings Rows (All content inside x: 20..248 so card at screen-x=266 never clips any text) -->
+      <!-- Row 1: BEL -->
+      <g transform="translate(20, 152)">
+        <rect x="0" y="0" width="228" height="72" rx="14" fill="#1D232D" stroke="#56B881" stroke-opacity="0.22" />
+        <circle cx="32" cy="36" r="19" fill="#161922" stroke="#FACC15" stroke-width="2" />
+        <text x="32" y="40" text-anchor="middle" fill="#FDE047" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">BEL</text>
+        <text x="62" y="31" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="13" font-weight="600">Belgium</text>
+        <text x="62" y="49" fill="#8C94A0" font-family="'SF Mono', monospace" font-size="10">1W · GD +3 · 88</text>
+        <rect x="184" y="24" width="34" height="24" rx="8" fill="#113325" stroke="#56B881" stroke-opacity="0.55" />
+        <text x="201" y="40" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="11" font-weight="700">3P</text>
+      </g>
+
+      <!-- Row 2: POR -->
+      <g transform="translate(20, 236)">
+        <rect x="0" y="0" width="228" height="72" rx="14" fill="#1D232D" stroke="#F1EDE5" stroke-opacity="0.08" />
+        <circle cx="32" cy="36" r="19" fill="#14532D" stroke="#EF4444" stroke-width="2" />
+        <text x="32" y="40" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">POR</text>
+        <text x="62" y="31" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="13" font-weight="600">Portugal</text>
+        <text x="62" y="49" fill="#8C94A0" font-family="'SF Mono', monospace" font-size="10">1W · GD +2 · 89</text>
+        <rect x="184" y="24" width="34" height="24" rx="8" fill="#113325" stroke="#56B881" stroke-opacity="0.55" />
+        <text x="201" y="40" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="11" font-weight="700">3P</text>
+      </g>
+
+      <!-- Row 3: FRA -->
+      <g transform="translate(20, 320)">
+        <rect x="0" y="0" width="228" height="72" rx="14" fill="#1D232D" stroke="#F1EDE5" stroke-opacity="0.08" />
+        <circle cx="32" cy="36" r="19" fill="#1D4ED8" stroke="#93C5FD" stroke-width="2" />
+        <text x="32" y="40" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">FRA</text>
+        <text x="62" y="31" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="13" font-weight="600">France</text>
+        <text x="62" y="49" fill="#8C94A0" font-family="'SF Mono', monospace" font-size="10">1W · GD +1 · 90</text>
+        <rect x="184" y="24" width="34" height="24" rx="8" fill="#113325" stroke="#56B881" stroke-opacity="0.55" />
+        <text x="201" y="40" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="11" font-weight="700">3P</text>
+      </g>
+
+      <!-- Row 4: GER -->
+      <g transform="translate(20, 404)">
+        <rect x="0" y="0" width="228" height="72" rx="14" fill="#1D232D" stroke="#F1EDE5" stroke-opacity="0.08" />
+        <circle cx="32" cy="36" r="19" fill="#181C24" stroke="#E5B75B" stroke-width="2" />
+        <text x="32" y="40" text-anchor="middle" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">GER</text>
+        <text x="62" y="31" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="13" font-weight="600">Germany</text>
+        <text x="62" y="49" fill="#8C94A0" font-family="'SF Mono', monospace" font-size="10">1W · GD +1 · 85</text>
+        <rect x="184" y="24" width="34" height="24" rx="8" fill="#113325" stroke="#56B881" stroke-opacity="0.55" />
+        <text x="201" y="40" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="11" font-weight="700">3P</text>
+      </g>
+
+      <!-- Bottom Nav Bar Indicator -->
+      <rect x="20" y="492" width="228" height="30" rx="11" fill="#14181F" stroke="#F1EDE5" stroke-opacity="0.07" />
+      <text x="58" y="511" text-anchor="middle" fill="#7B828E" font-family="'SF Pro Text', sans-serif" font-size="10">Matches</text>
+      <text x="134" y="511" text-anchor="middle" fill="#56B881" font-family="'SF Pro Text', sans-serif" font-size="10" font-weight="600">Standings</text>
+      <text x="210" y="511" text-anchor="middle" fill="#7B828E" font-family="'SF Pro Text', sans-serif" font-size="10">Teams</text>
+    </g>
+
+    <!-- 3B. BACK-RIGHT MOBILE SCREEN: Squads & 220-Player Directory (x=1254..1536, Card ends at x=1264 -> 10px edge overlap) -->
+    <g id="screen-players" filter="url(#shadowMedium)" transform="translate(1254, 142)">
+      <rect x="0" y="0" width="282" height="528" rx="34" fill="url(#phoneSurface)" stroke="url(#phoneBorder)" stroke-width="1.5" />
+      <!-- Dynamic Island + Status -->
+      <text x="28" y="30" fill="#A9B0BA" font-family="'SF Pro Text', -apple-system, sans-serif" font-size="11" font-weight="600">9:41</text>
+      <rect x="105" y="16" width="72" height="19" rx="9.5" fill="#090B0E" />
+      <text x="228" y="30" fill="#56B881" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">220</text>
+
+      <!-- Screen Header (Starts at local x=26, completely clear of center card!) -->
+      <text x="26" y="64" fill="#B49A78" font-family="'SF Mono', monospace" font-size="9.5" letter-spacing="1.4">TEAMS &amp; PLAYER DIRECTORY</text>
+      <text x="26" y="89" fill="#F1EDE5" font-family="'SF Pro Display', -apple-system, sans-serif" font-size="20.5" font-weight="700">Squads &amp; Players</text>
+
+      <!-- Player Filter Demo Controls (PlayerListView) -->
+      <text x="26" y="109" fill="#8C939C" font-family="'SF Mono', monospace" font-size="8.5" letter-spacing="1.2">PLAYER FILTERS · DEMO</text>
+      <g transform="translate(24, 117)">
+        <rect x="0" y="0" width="144" height="24" rx="12" fill="#133325" stroke="#56B881" stroke-opacity="0.65" />
+        <text x="72" y="15.5" text-anchor="middle" fill="#82E3AC" font-family="'SF Pro Text', sans-serif" font-size="10" font-weight="600">Center Midfielder</text>
+
+        <rect x="152" y="0" width="78" height="24" rx="12" fill="#1D273B" stroke="#60A5FA" stroke-opacity="0.55" />
+        <text x="191" y="15.5" text-anchor="middle" fill="#93C5FD" font-family="'SF Mono', monospace" font-size="10" font-weight="600">OVR 85+</text>
+      </g>
+
+      <!-- National Squad Rating Cards (TeamsView — distinct from player-filter controls above; original geometric emblems, zero athlete names/photos) -->
+      <text x="26" y="160" fill="#8C939C" font-family="'SF Mono', monospace" font-size="8.5" letter-spacing="1.2">NATIONAL SQUAD RATINGS</text>
+      <!-- Card 1: ESP -->
+      <g transform="translate(24, 170)">
+        <rect x="0" y="0" width="234" height="76" rx="15" fill="#1D2430" stroke="#F1EDE5" stroke-opacity="0.09" />
+        <circle cx="34" cy="38" r="19" fill="#B91C1C" stroke="#FACC15" stroke-width="1.8" />
+        <text x="34" y="42" text-anchor="middle" fill="#FEF08A" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">ESP</text>
+        <text x="66" y="32" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="13.5" font-weight="700">Spain Squad</text>
+        <text x="66" y="49" fill="#94A0B2" font-family="'SF Pro Text', sans-serif" font-size="10.5">11 Players · Top Rated</text>
+        <rect x="186" y="25" width="36" height="26" rx="8" fill="#142C52" stroke="#60A5FA" stroke-opacity="0.55" />
+        <text x="204" y="42" text-anchor="middle" fill="#93C5FD" font-family="'SF Mono', monospace" font-size="12" font-weight="700">91</text>
+      </g>
+
+      <!-- Card 2: FRA -->
+      <g transform="translate(24, 256)">
+        <rect x="0" y="0" width="234" height="76" rx="15" fill="#1D2430" stroke="#F1EDE5" stroke-opacity="0.09" />
+        <circle cx="34" cy="38" r="19" fill="#1D4ED8" stroke="#E2E8F0" stroke-width="1.8" />
+        <text x="34" y="42" text-anchor="middle" fill="#FFFFFF" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">FRA</text>
+        <text x="66" y="32" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="13.5" font-weight="700">France Squad</text>
+        <text x="66" y="49" fill="#94A0B2" font-family="'SF Pro Text', sans-serif" font-size="10.5">11 Players · Seeded</text>
+        <rect x="186" y="25" width="36" height="26" rx="8" fill="#142C52" stroke="#60A5FA" stroke-opacity="0.55" />
+        <text x="204" y="42" text-anchor="middle" fill="#93C5FD" font-family="'SF Mono', monospace" font-size="12" font-weight="700">90</text>
+      </g>
+
+      <!-- Card 3: ENG -->
+      <g transform="translate(24, 342)">
+        <rect x="0" y="0" width="234" height="76" rx="15" fill="#1D2430" stroke="#56B881" stroke-opacity="0.34" />
+        <circle cx="34" cy="38" r="19" fill="#991B1B" stroke="#F8FAFC" stroke-width="1.8" />
+        <text x="34" y="42" text-anchor="middle" fill="#FFFFFF" font-family="'SF Pro Display', sans-serif" font-size="11" font-weight="800">ENG</text>
+        <text x="66" y="32" fill="#F1EDE5" font-family="'SF Pro Display', sans-serif" font-size="13.5" font-weight="700">England Squad</text>
+        <text x="66" y="49" fill="#94A0B2" font-family="'SF Pro Text', sans-serif" font-size="10.5">11 Players · Balanced</text>
+        <rect x="186" y="25" width="36" height="26" rx="8" fill="#113325" stroke="#56B881" stroke-opacity="0.6" />
+        <text x="204" y="42" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="12" font-weight="700">89</text>
+      </g>
+
+      <!-- Directory Summary Legend -->
+      <g transform="translate(26, 446)">
+        <text x="0" y="12" fill="#8C939C" font-family="'SF Mono', monospace" font-size="9.5" letter-spacing="1.2">NORMALIZED DIRECTORY</text>
+        <rect x="0" y="22" width="110" height="24" rx="12" fill="#131922" stroke="#F1EDE5" stroke-opacity="0.10" />
+        <text x="55" y="38" text-anchor="middle" fill="#C9B08C" font-family="'SF Mono', monospace" font-size="10">20 SQUADS</text>
+        <rect x="118" y="22" width="114" height="24" rx="12" fill="#131922" stroke="#56B881" stroke-opacity="0.30" />
+        <text x="175" y="38" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="10">10 POSITIONS</text>
+      </g>
+    </g>
+
+    <!-- 3C. FOREGROUND CENTERPIECE: Luxury Tournament Navy & Pitch-Emerald Match Timeline Card (FRA 3 - 2 ITA) -->
+    <g id="hero-match-card" filter="url(#shadowHeavy)">
+      <rect x="954" y="156" width="310" height="466" rx="26" fill="url(#cardBg)" stroke="url(#cardBorder)" stroke-width="2.2" />
+
+      <g clip-path="url(#cardClip)">
+        <rect x="954" y="156" width="310" height="466" fill="url(#cardCoreGlow)" />
+
+        <!-- Subtle Stadium Floodlight & Pitch Geometry -->
+        <path d="M954 360 L1264 226 L1264 294 L954 428 Z" fill="#FFFFFF" fill-opacity="0.035" />
+        <path d="M954 156 L1146 156 L1006 622 L954 622 Z" fill="url(#cardSheen)" />
+        <circle cx="1109" cy="316" r="106" stroke="#56B881" stroke-opacity="0.20" stroke-width="1.2" />
+        <circle cx="1109" cy="316" r="72" stroke="#E8C99B" stroke-opacity="0.18" stroke-width="1" stroke-dasharray="4 6" />
+        <rect x="966" y="168" width="286" height="442" rx="18" stroke="#F1EDE5" stroke-opacity="0.14" stroke-width="1" />
+
+        <!-- Top Match Status Strip -->
+        <rect x="984" y="186" width="174" height="24" rx="12" fill="#0E2832" stroke="#56B881" stroke-opacity="0.48" />
+        <text x="1071" y="202" text-anchor="middle" fill="#82E3AC" font-family="'SF Mono', monospace" font-size="9.5" font-weight="700" letter-spacing="1.2">SAMPLE FIXTURE · #1</text>
+
+        <rect x="1192" y="186" width="44" height="24" rx="12" fill="#1C2C49" stroke="#E8C99B" stroke-opacity="0.52" />
+        <text x="1214" y="202" text-anchor="middle" fill="#F4D7A7" font-family="'SF Mono', monospace" font-size="10" font-weight="700">FT</text>
+
+        <!-- Center Scoreboard Row: FRA 3 - 2 ITA -->
+        <g transform="translate(0, 240)">
+          <!-- FRA Geometric Shield -->
+          <circle cx="1014" cy="40" r="30" fill="#1D4ED8" stroke="url(#goldTrim)" stroke-width="2" />
+          <text x="1014" y="45" text-anchor="middle" fill="#F8FAFC" font-family="'SF Pro Display', sans-serif" font-size="15" font-weight="800" letter-spacing="0.8">FRA</text>
+          <text x="1014" y="88" text-anchor="middle" fill="#DCE4F0" font-family="'SF Pro Text', sans-serif" font-size="12.5" font-weight="600">France</text>
+
+          <!-- Bold Scoreline -->
+          <text x="1109" y="54" text-anchor="middle" fill="#F7F4EE" font-family="'SF Pro Display', -apple-system, sans-serif" font-size="50" font-weight="800" letter-spacing="-1.5">3–2</text>
+          <text x="1109" y="88" text-anchor="middle" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600" letter-spacing="1.2">55% · 45%</text>
+
+          <!-- ITA Geometric Shield -->
+          <circle cx="1204" cy="40" r="30" fill="#15803D" stroke="url(#goldTrim)" stroke-width="2" />
+          <text x="1204" y="45" text-anchor="middle" fill="#F8FAFC" font-family="'SF Pro Display', sans-serif" font-size="15" font-weight="800" letter-spacing="0.8">ITA</text>
+          <text x="1204" y="88" text-anchor="middle" fill="#DCE4F0" font-family="'SF Pro Text', sans-serif" font-size="12.5" font-weight="600">Italy</text>
+        </g>
+
+        <!-- Possession Split Bar -->
+        <g transform="translate(984, 348)">
+          <rect x="0" y="0" width="250" height="8" rx="4" fill="#102338" />
+          <rect x="0" y="0" width="138" height="8" rx="4" fill="#3B82F6" />
+          <rect x="142" y="0" width="108" height="8" rx="4" fill="#3FA66F" />
+        </g>
+
+        <!-- Lower Match Event Timeline Panel -->
+        <rect x="974" y="376" width="270" height="226" rx="16" fill="#081322" fill-opacity="0.90" stroke="#56B881" stroke-opacity="0.28" />
+
+        <!-- Timeline Header Badge -->
+        <rect x="1008" y="390" width="202" height="24" rx="12" fill="#112C33" stroke="#56B881" stroke-opacity="0.58" />
+        <text x="1109" y="406" text-anchor="middle" fill="#8AE6B2" font-family="'SF Mono', monospace" font-size="10" font-weight="700" letter-spacing="1.3">MATCH EVENT TIMELINE</text>
+
+        <!-- Vertical Timeline Spine + Authentic match_1 Goal Minutes (10', 30', 45', 55', 70') -->
+        <line x1="1109" y1="428" x2="1109" y2="544" stroke="#B49A78" stroke-opacity="0.34" stroke-width="1.4" stroke-dasharray="3 4" />
+
+        <!-- 10' FRA -->
+        <circle cx="1109" cy="436" r="4.5" fill="#60A5FA" />
+        <text x="1094" y="440" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">FRA Goal</text>
+        <text x="1124" y="440" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">10'</text>
+
+        <!-- 30' FRA -->
+        <circle cx="1109" cy="462" r="4.5" fill="#60A5FA" />
+        <text x="1094" y="466" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">FRA Goal</text>
+        <text x="1124" y="466" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">30'</text>
+
+        <!-- 45' ITA -->
+        <circle cx="1109" cy="488" r="4.5" fill="#56B881" />
+        <text x="1094" y="492" text-anchor="end" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">45'</text>
+        <text x="1124" y="492" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">ITA Goal</text>
+
+        <!-- 55' FRA -->
+        <circle cx="1109" cy="514" r="4.5" fill="#60A5FA" />
+        <text x="1094" y="518" text-anchor="end" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">FRA Goal</text>
+        <text x="1124" y="518" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">55'</text>
+
+        <!-- 70' ITA -->
+        <circle cx="1109" cy="540" r="4.5" fill="#56B881" />
+        <text x="1094" y="544" text-anchor="end" fill="#B49A78" font-family="'SF Mono', monospace" font-size="10.5" font-weight="600">70'</text>
+        <text x="1124" y="544" fill="#F1EDE5" font-family="'SF Pro Text', sans-serif" font-size="11.5" font-weight="600">ITA Goal</text>
+
+        <!-- Grounded Attribute Chips -->
+        <g transform="translate(990, 562)">
+          <rect x="0" y="0" width="74" height="27" rx="8" fill="#102238" stroke="#60A5FA" stroke-opacity="0.28" />
+          <text x="37" y="17.5" text-anchor="middle" fill="#CBD5E1" font-family="'SF Mono', monospace" font-size="10">5 MATCHES</text>
+
+          <rect x="82" y="0" width="74" height="27" rx="8" fill="#102238" stroke="#56B881" stroke-opacity="0.32" />
+          <text x="119" y="17.5" text-anchor="middle" fill="#8AE6B2" font-family="'SF Mono', monospace" font-size="10">19 GOALS</text>
+
+          <rect x="164" y="0" width="74" height="27" rx="8" fill="#102238" stroke="#E8C99B" stroke-opacity="0.38" />
+          <text x="201" y="17.5" text-anchor="middle" fill="#F0D3A5" font-family="'SF Mono', monospace" font-size="10">SIMULATED</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- 3D. FLOATING ENGINEERING INSPECTOR FIRESTORE TRACE BAR -->
+    <g id="firestore-trace-bar" filter="url(#shadowSoft)" transform="translate(790, 694)">
+      <rect x="0" y="0" width="644" height="102" rx="18" fill="url(#traceBg)" stroke="#B49A78" stroke-opacity="0.38" stroke-width="1.3" />
+      <circle cx="24" cy="30" r="5" fill="#56B881" />
+      <text x="38" y="34" fill="#9CA3AF" font-family="'SF Mono', monospace" font-size="11" font-weight="600" letter-spacing="1.4">ENGINEERING INSPECTOR · SIMULATED FIRESTORE</text>
+      <rect x="536" y="17" width="86" height="24" rx="12" fill="#0F2D21" stroke="#56B881" stroke-opacity="0.55" />
+      <text x="579" y="33" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="10.5" font-weight="700">OFFLINE</text>
+
+      <rect x="20" y="51" width="66" height="28" rx="7" fill="#122C21" stroke="#56B881" stroke-opacity="0.58" />
+      <text x="53" y="69" text-anchor="middle" fill="#7CE0A6" font-family="'SF Mono', monospace" font-size="12" font-weight="700">READ</text>
+      <text x="100" y="70" fill="#F1EDE5" font-family="'SF Mono', monospace" font-size="14" font-weight="600">collection("matches")</text>
+      <text x="292" y="70" fill="#8C94A0" font-family="'SF Mono', monospace" font-size="13">→  20 teams · 220 players · 5 fixtures</text>
+    </g>
+  </g>
+</svg>
