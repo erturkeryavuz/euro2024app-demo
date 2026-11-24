@@ -10,7 +10,7 @@ const DATASET_FILES = [
     path: "euro2024_data/euro2024_matches.json",
     firestore: 'Firestore collection("matches") via euro2024_matches.py',
     summary:
-      "Contains 5 synthetic demonstration matches dated 2024-07-22 through 2024-07-26 (after real UEFA Euro 2024 ended on 2024-07-14). Drives MatchesView, MatchDetailView, and LeagueStandingViewModel.",
+      "5 synthetic sample matches dated 2024-07-22 through 2024-07-26 (after the 2024 tournament concluded on 2024-07-14). Drives MatchesView, MatchDetailView, and LeagueStandingViewModel.",
     sample: MATCHES[0],
   },
   {
@@ -37,7 +37,7 @@ const DATASET_FILES = [
     path: "euro2024_data/euro2024_players.json",
     firestore: 'Firestore collection("players") via PlayerViewModel.swift',
     summary:
-      "220 real footballers (11 starters × 20 teams) from a Euro 2020/2021-era squad snapshot. Phase A normalized the Center/Central Midfielder filter mismatch so all 220 players are filterable.",
+      "220 footballer profiles (11 starters × 20 teams) from a Euro 2020/2021-era squad snapshot. Position filtering normalizes 'Center Midfielder' and 'Central Midfielder' so all 220 players are reachable.",
     sample: PLAYERS.slice(0, 2).map(({ player_id, name, position, team_id, country, rating }) => ({
       player_id,
       name,
@@ -53,7 +53,7 @@ const DATASET_FILES = [
     path: "Euro2024App/News Folder/NewsViewModel.swift",
     firestore: "Hardcoded local stub array (no remote news API)",
     summary:
-      "Static 2-item stub array created as an API integration placeholder. Displayed faithfully in NewsView without fabricating live journalism.",
+      "Two static placeholder entries retained as an API integration stub in NewsView without fabricating a live news feed.",
     sample: NEWS_ITEMS,
   },
 ];
@@ -233,7 +233,7 @@ function navigate(screen, opts = {}) {
       swiftView: "LoginView.swift",
       operation: "Auth.auth().signIn(withEmail:password:)",
       payload: { fields: ["Email", "Password"], decorativeLabels: ["Remember Me", "Forget Password?"] },
-      note: "Simulates Firebase email/password sign-in locally. Phase A fixed the success alert title ('Error' → 'Success'). 'Remember Me' and 'Forget Password?' remain non-interactive labels in SwiftUI source.",
+      note: "Simulates Firebase email/password sign-in locally without network requests. Successful sign-in displays a 'Success' confirmation; 'Remember Me' and 'Forget Password?' remain non-interactive labels in SwiftUI source.",
     });
   } else if (screen === "register") {
     recordTrace({
@@ -251,10 +251,10 @@ function navigate(screen, opts = {}) {
     const t2 = TEAMS_BY_ID[m.team2_id];
     recordTrace({
       source: 'Firestore collection("matches") [Simulated]',
-      swiftView: "MatchDetailView .swift",
+      swiftView: "MatchDetailView.swift",
       operation: `Detail(${t1.name} ${m.team1_score} - ${m.team2_score} ${t2.name})`,
       payload: m,
-      note: "Source-backed sample match from euro2024_matches.json (synthetic post-tournament sample, not an official UEFA Euro 2024 result). Goal/assist timeline sorted chronologically by minute.",
+      note: "Sample match from euro2024_matches.json (synthetic post-tournament fixture, not an official UEFA Euro 2024 result). Goal and assist events are sorted chronologically by minute.",
     });
   } else if (screen === "team-detail") {
     const team = TEAMS_BY_ID[state.selectedTeamId] || TEAMS[0];
@@ -273,11 +273,11 @@ function navigate(screen, opts = {}) {
       swiftView: "PlayerListView.swift",
       operation: "Client-side 3-filter LazyVGrid (220 players)",
       payload: { total_players: PLAYERS.length, matching: filtered.length, filters: { ...state.filters } },
-      note: "Phase A normalized 'Center Midfielder' / 'Central Midfielder' so all 220 players are reachable via Position filtering.",
+      note: "Position filtering normalizes 'Center Midfielder' and 'Central Midfielder' so all 220 players are reachable.",
     });
   } else if (screen === "news") {
     recordTrace({
-      source: "NewsViewModel.swift (Static Stub)",
+      source: "NewsViewModel.swift (Static Placeholder)",
       swiftView: "NewsView.swift",
       operation: "NewsViewModel.fetchNews() [2 hardcoded items]",
       payload: NEWS_ITEMS,
@@ -287,7 +287,7 @@ function navigate(screen, opts = {}) {
     recordTrace({
       source: 'Firestore collection("users").document(uid) [Simulated]',
       swiftView: "ProfileView.swift",
-      operation: state.isLoggedIn ? "loadUserProfile() — Phase A Remediated" : "Auth Gate (isLoggedIn == false)",
+      operation: state.isLoggedIn ? "loadUserProfile() — UserDefaults hardened" : "Auth Gate (isLoggedIn == false)",
       payload: state.isLoggedIn
         ? {
             name: state.profile.name,
@@ -298,7 +298,7 @@ function navigate(screen, opts = {}) {
             userPasswordStoredInUserDefaults: false,
           }
         : { isLoggedIn: false, message: "Please log in to view your profile." },
-      note: "Phase A removed @AppStorage('userPassword') so plaintext passwords are never persisted to UserDefaults.",
+      note: "ProfileView avoids @AppStorage('userPassword') so plaintext passwords are never persisted to UserDefaults.",
     });
   }
 
@@ -735,7 +735,7 @@ function renderNews() {
     <div class="eu-news-screen">
       <div class="eu-nav-row">
         <button class="eu-back-btn" type="button" data-nav="landing" style="color:#007aff">‹ Euro2024 App</button>
-        <span style="font-size:0.72rem;color:#6b7280;font-weight:600">Static Stub (2 items)</span>
+        <span style="font-size:0.72rem;color:#6b7280;font-weight:600">Sample Entries (2)</span>
       </div>
       <h2 class="eu-news-title">News</h2>
       <div class="eu-news-list">
@@ -841,7 +841,7 @@ function renderTracePanel() {
   if (!state.traces.length) {
     return `
       <p style="font-size:0.84rem;color:var(--text-muted);margin-top:0">
-        Interact with any screen inside the iPhone frame (or pick a Guided Tour step above) to inspect the matching SwiftUI source file, Firebase/local data origin, and source-grounded JSON payload.
+        Interact with any screen inside the phone frame—or choose a screen shortcut above—to inspect the matching SwiftUI source file, simulated Firebase/local data origin, and source-matched JSON payload.
       </p>
       <div class="meta-tile">
         <div class="meta-k">Media Licensing &amp; Data Provenance</div>
@@ -893,7 +893,7 @@ function renderDataPanel() {
   const ds = DATASET_FILES.find((x) => x.id === state.selectedDatasetId) || DATASET_FILES[0];
   return `
     <div class="info-banner" role="note">
-      <strong>Honest Data Provenance:</strong> The repository's <code>euro2024_data/*.json</code> bundle contains 20 teams (including Sweden, Russia, Wales), 220 Euro 2020-era player profiles, and 5 synthetic demonstration matches dated 2024-07-22 to 2024-07-26. They are preserved faithfully as the app's original dataset and are <strong>not</strong> presented as official historical UEFA Euro 2024 match results.
+      <strong>Data Provenance:</strong> The bundled <code>euro2024_data/*.json</code> dataset contains 20 teams (including Sweden, Russia, and Wales), 220 Euro 2020/2021-era player profiles, and 5 synthetic fixtures dated 2024-07-22 to 2024-07-26. It preserves the original app dataset and is <strong>not</strong> official UEFA Euro 2024 match data.
     </div>
 
     <div class="step-pills" role="group" aria-label="Dataset files">
@@ -924,28 +924,26 @@ function renderArchPanel() {
   return `
     <div class="arch-grid">
       <div class="arch-card">
-        <h3>Phase A Security &amp; Correctness Remediation</h3>
+        <h3>Security &amp; Correctness Highlights</h3>
         <ul>
-          <li><strong>Plaintext password removal (<code>ProfileView.swift</code>):</strong> Removed <code>@AppStorage("userPassword")</code>, scrubbed legacy <code>UserDefaults</code> keys on profile load and logout, and stopped persisting unverified <code>newEmail</code> values to Firestore before email verification completes.</li>
-          <li><strong>Logout &amp; login alert fixes:</strong> <code>MainView.logout()</code> now clears <code>username</code>, <code>userEmail</code>, and legacy <code>userPassword</code>; <code>LoginView</code> displays <code>"Success"</code> instead of <code>"Error"</code> on successful sign-in.</li>
-          <li><strong>Player filter bugfix:</strong> <code>PlayerListView</code> now matches both <code>"Center Midfielder"</code> (13) and <code>"Central Midfielder"</code> (15) so all 220 players are reachable, and shows the numeric slider value.</li>
-          <li><strong>Repo hygiene &amp; tests:</strong> Untracked <code>5</code> <code>.DS_Store</code> and <code>3</code> <code>xcuserdata</code> files (removing 217 tracked macOS paths from <code>HEAD</code>) and added 7 deterministic Python data-integrity &amp; security regression tests.</li>
+          <li><strong>No plaintext password storage (<code>ProfileView.swift</code>):</strong> Removes <code>@AppStorage("userPassword")</code>, clears legacy <code>UserDefaults</code> keys on profile load and sign-out, and defers Firestore email updates until email verification completes.</li>
+          <li><strong>Session &amp; alert handling:</strong> <code>MainView.logout()</code> clears cached <code>username</code>, <code>userEmail</code>, and legacy password keys; <code>LoginView</code> displays a <code>"Success"</code> confirmation on sign-in.</li>
+          <li><strong>Normalized player filtering:</strong> <code>PlayerListView</code> maps both <code>"Center Midfielder"</code> (13) and <code>"Central Midfielder"</code> (15) together so all 220 players are filterable, and displays the active minimum-rating slider value.</li>
         </ul>
       </div>
       <div class="arch-card">
-        <h3>Public Media Licensing &amp; Attribution</h3>
+        <h3>Media Licensing &amp; Attribution</h3>
         <ul>
-          <li><strong>49 Verified Wikimedia Commons photographs:</strong> Olympiastadion Berlin at night (<code>CC BY 3.0</code>) + 48 real footballer portraits (covering 35/36 match participants + every national team) documented with clickable license &amp; source links in <a href="notices.html">Third-Party Notices</a>.</li>
-          <li><strong>25 Original SVGs:</strong> 20 geometric national-color team badges, 4 Home tile icons (replacing watermarked Adobe Stock files and missing <code>profile button</code>), and original neon polygon backdrop.</li>
-          <li><strong>Original Xcode assets untouched:</strong> <code>Assets.xcassets/</code> remains preserved locally without rewriting Git history.</li>
+          <li><strong>49 Wikimedia Commons photographs:</strong> Olympiastadion Berlin at night (<code>CC BY 3.0</code>) plus 48 footballer portraits (35 of 36 match participants and every national squad), attributed with license links in <a href="notices.html">Third-Party Notices</a>.</li>
+          <li><strong>25 Original SVGs:</strong> 20 geometric national-color team badges, 4 Home navigation icons, and a neon polygon backdrop created specifically for this project.</li>
         </ul>
       </div>
       <div class="arch-card">
-        <h3>Honest Scope &amp; Limitations</h3>
+        <h3>Preview Scope &amp; Limitations</h3>
         <ul>
-          <li><strong>Zero live Firebase calls:</strong> Authentication, Firestore reads/writes, and profile edits are simulated client-side in the browser.</li>
-          <li><strong>Unwired source elements:</strong> <code>LoginView</code>'s <code>"Remember Me"</code> and <code>"Forget Password?"</code> labels are non-interactive in SwiftUI; <code>NewsView</code> has 2 static stub entries; <code>LeagueStandingView</code> computes a unified 20-team table rather than 6 Euro groups.</li>
-          <li><strong>Build note:</strong> Full iOS/Firebase compilation requires Xcode 15+ (iOS 17.5, SwiftPM) with a local <code>GoogleService-Info.plist</code>.</li>
+          <li><strong>Offline browser simulation:</strong> Firebase Authentication, Firestore queries, and profile updates run locally in memory with zero live backend requests.</li>
+          <li><strong>Source fidelity notes:</strong> <code>LoginView</code>'s <code>"Remember Me"</code> and <code>"Forget Password?"</code> labels are decorative in SwiftUI; <code>NewsView</code> holds 2 static placeholder items; <code>LeagueStandingView</code> computes a unified 20-team table rather than 6 tournament groups.</li>
+          <li><strong>Native iOS build:</strong> Compiling the full SwiftUI application requires Xcode 15+ (iOS 17.5, SwiftPM) and a local <code>GoogleService-Info.plist</code>.</li>
         </ul>
       </div>
     </div>
@@ -1129,7 +1127,7 @@ function bindEvents() {
       swiftView: "MainView.swift → logout()",
       operation: "Auth.auth().signOut() + AppStorage cleanup",
       payload: { isLoggedIn: false, username: "", userEmail: "", legacyUserPasswordRemoved: true },
-      note: "Phase A clears username, userEmail, and any legacy userPassword key on logout.",
+      note: "Clears username, userEmail, and any legacy userPassword key from local storage on sign-out.",
     });
     announce("Signed out of demo session.");
     render();
@@ -1165,7 +1163,7 @@ function bindEvents() {
         favoritePlayer: state.profile.favoritePlayer,
         favoriteMatch: state.profile.favoriteMatch,
       },
-      note: "Phase A fix: unverified newEmail is NOT overwritten into Firestore before verification, and passwords are never written to UserDefaults.",
+      note: "Unverified newEmail values are held pending verification rather than overwriting Firestore, and passwords are never persisted to UserDefaults.",
     });
     announce("Profile updated in demo session.");
     render();
@@ -1191,10 +1189,10 @@ function bindEvents() {
 const TUTORIAL_STAGES = [
   {
     id: "landing",
-    title: "Euro2024App Home & Stadium Shell",
+    title: "Home & Stadium Shell",
     tourKey: "landing",
     durationMs: 3600,
-    narration: "Euro2024App pairs a SwiftUI iOS companion with simulated Firebase state. Start from the Olympiastadion Berlin home shell and four original navigation tiles.",
+    narration: "Euro2024App is a SwiftUI and Firebase football companion. Start from the Olympiastadion Berlin home screen and its four main navigation tiles.",
     enter() {
       state.inspectorTab = "trace";
       state.isLoggedIn = false;
@@ -1206,11 +1204,11 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "auth",
-    title: "Simulated Firebase Sign-In",
+    title: "Account Sign-In Flow",
     tourKey: "login",
     durationMs: 3900,
     subDelayMs: 1400,
-    narration: "LoginView simulates Firebase email/password authentication locally with zero network requests and zero plaintext passwords stored in UserDefaults.",
+    narration: "LoginView models Firebase email and password authentication locally, signing into the preview session without network calls or local password storage.",
     enter() {
       state.inspectorTab = "trace";
       navigate("login");
@@ -1224,18 +1222,18 @@ const TUTORIAL_STAGES = [
         swiftView: "LoginView.swift → MainView.swift",
         operation: "Login Successful (Zero password stored)",
         payload: { email: state.email, isLoggedIn: true, storedPasswordInUserDefaults: false },
-        note: "Guided tutorial signed into the local demo account without any live Firebase call.",
+        note: "Guided tutorial signed into the local preview account without any live Firebase call.",
       });
       navigate("landing");
     },
   },
   {
     id: "matches-timeline",
-    title: "Sample Fixtures & Match Event Timeline",
+    title: "Fixtures & Match Timeline",
     tourKey: "matches",
     durationMs: 4200,
     subDelayMs: 1600,
-    narration: "MatchesTabView lists the 5 bundled sample fixtures, then opens France 3 – 2 Italy to inspect chronologically sorted goal and assist events.",
+    narration: "MatchesTabView lists the five sample fixtures before opening France 3 – 2 Italy to show possession stats and a chronological goal timeline.",
     enter() {
       state.inspectorTab = "trace";
       navigate("analyzes", { segment: 0 });
@@ -1246,10 +1244,10 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "standings",
-    title: "Unified 20-Team Standings Table",
+    title: "Unified 20-Team Standings",
     tourKey: "standings",
     durationMs: 3600,
-    narration: "LeagueStandingView computes live points (3 win / 1 draw / 0 loss) and goal difference across all 20 national teams from the bundled fixtures.",
+    narration: "LeagueStandingView computes points (3 for a win, 1 for a draw) and goal difference dynamically across all 20 national teams.",
     enter() {
       state.inspectorTab = "trace";
       navigate("analyzes", { segment: 1 });
@@ -1257,11 +1255,11 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "teams-squad",
-    title: "20 National Teams & Squad Drill-Down",
+    title: "National Teams & Squad View",
     tourKey: "teams",
     durationMs: 4300,
     subDelayMs: 1600,
-    narration: "TeamsView displays all 20 national teams with original geometric monogram badges, then drills into France's 11-player squad in TeamDetailView.",
+    narration: "TeamsView presents all 20 national teams with custom monogram badges, then drills into France's 11-player roster in TeamDetailView.",
     enter() {
       state.inspectorTab = "trace";
       navigate("analyzes", { segment: 2 });
@@ -1272,11 +1270,11 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "players-filter",
-    title: "220-Player Directory & Normalized Filtering",
+    title: "220-Player Directory & Filters",
     tourKey: "players",
     durationMs: 4400,
     subDelayMs: 1600,
-    narration: "PlayerListView loads all 220 real player identities and applies normalized Center/Central Midfielder + 85+ rating filtering with instant trace updates.",
+    narration: "PlayerListView loads all 220 footballer profiles and filters for Center Midfielders rated 85+ while updating the live trace panel.",
     enter() {
       state.inspectorTab = "trace";
       state.filters = { position: "All", country: "All", minRating: 0 };
@@ -1297,11 +1295,11 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "news-profile",
-    title: "News Stub & Authenticated Profile",
+    title: "News Feed & User Profile",
     tourKey: "profile",
     durationMs: 4400,
     subDelayMs: 1600,
-    narration: "NewsView preserves the app's 2 static stub entries honestly, then ProfileView shows authenticated preference editing with Phase A password remediation.",
+    narration: "NewsView renders the app's two placeholder headlines before switching to ProfileView for favorite team, player, and match preferences.",
     enter() {
       state.inspectorTab = "trace";
       if (!state.isLoggedIn) {
@@ -1317,11 +1315,11 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "inspector",
-    title: "Firebase Data Inspector & Provenance",
+    title: "Data Trace & Provenance Inspector",
     tourKey: "matches",
     durationMs: 4400,
     subDelayMs: 1800,
-    narration: "The right-hand inspector records simulated Firestore traces and documents exact bundled dataset provenance (not live or official UEFA Euro 2024 data).",
+    narration: "The companion inspector logs each simulated Firestore operation alongside the bundled dataset schema and provenance details.",
     enter() {
       state.inspectorTab = "trace";
       render();
@@ -1333,10 +1331,10 @@ const TUTORIAL_STAGES = [
   },
   {
     id: "finish",
-    title: "Walkthrough Complete — Explore Manually",
+    title: "Tour Complete — Explore Freely",
     tourKey: "landing",
     durationMs: 0,
-    narration: "Guided walkthrough complete. Replay anytime, or exit to explore every match timeline, team squad, 220-player filter, and Firebase trace manually.",
+    narration: "Walkthrough complete. Replay anytime or exit to explore every match timeline, team roster, player filter, and data trace manually.",
     enter() {
       state.inspectorTab = "trace";
       state.filters = { position: "All", country: "All", minRating: 0 };
