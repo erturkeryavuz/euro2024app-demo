@@ -277,17 +277,17 @@ function navigate(screen, opts = {}) {
     });
   } else if (screen === "news") {
     recordTrace({
-      source: "NewsViewModel.swift (Static Placeholder)",
+      source: "NewsViewModel.swift (Static Sample)",
       swiftView: "NewsView.swift",
-      operation: "NewsViewModel.fetchNews() [2 hardcoded items]",
+      operation: "NewsViewModel.fetchNews()",
       payload: NEWS_ITEMS,
-      note: "Preserves the exact 2 hardcoded sample items in NewsViewModel.swift without inventing a live news feed.",
+      note: "Renders the two static placeholder articles defined in NewsViewModel.swift (no external news API).",
     });
   } else if (screen === "profile") {
     recordTrace({
-      source: 'Firestore collection("users").document(uid) [Simulated]',
+      source: 'Firestore users/{uid} [Simulated]',
       swiftView: "ProfileView.swift",
-      operation: state.isLoggedIn ? "loadUserProfile() — UserDefaults hardened" : "Auth Gate (isLoggedIn == false)",
+      operation: state.isLoggedIn ? "loadUserProfile()" : "Auth Gate (Signed Out)",
       payload: state.isLoggedIn
         ? {
             name: state.profile.name,
@@ -316,14 +316,14 @@ function recordAnalyzesTrace() {
         fixture: `${TEAMS_BY_ID[m.team1_id].name} ${m.team1_score}-${m.team2_score} ${TEAMS_BY_ID[m.team2_id].name}`,
         date: m.date,
       })),
-      note: "5 bundled sample matches from euro2024_matches.json over original neon polygon backdrop (matches bg3 aesthetic).",
+      note: "Loads the 5 sample fixtures from euro2024_matches.json for MatchesView.",
     });
   } else if (state.analyzesSegment === 1) {
     const standings = computeStandings();
     recordTrace({
       source: "Combine (MatchViewModel + TeamViewModel)",
-      swiftView: "LeagueStandingView.swift + LeagueStandingViewModel.swift",
-      operation: "calculateStandings(matches: 5, teams: 20)",
+      swiftView: "LeagueStandingView.swift",
+      operation: "calculateStandings(teams: 20)",
       payload: standings.slice(0, 6).map(({ teamName, points, wins, draws, losses, goalsFor, goalsAgainst }) => ({
         teamName,
         points,
@@ -333,24 +333,24 @@ function recordAnalyzesTrace() {
         goalsFor,
         goalsAgainst,
       })),
-      note: "Source computes a single unified 20-team league table (3 pts win, 1 draw, 0 loss) rather than 6 UEFA Euro groups.",
+      note: "Computes a unified 20-team standings table (3 pts win, 1 draw, 0 loss) from the loaded fixtures.",
     });
   } else if (state.analyzesSegment === 2) {
     recordTrace({
-      source: "TeamViewModel.swift (Hardcoded sampleTeams)",
+      source: "TeamViewModel.swift (sampleTeams)",
       swiftView: "TeamsView.swift",
       operation: "TeamViewModel.fetchTeams() (20 teams)",
       payload: { count: TEAMS.length, sample: TEAMS.slice(0, 5).map(({ team_id, name, rating }) => ({ team_id, name, rating })) },
-      note: "TeamViewModel uses 20 hardcoded teams with original geometric national-color SVG badges replacing copyrighted federation crests.",
+      note: "Loads all 20 national teams and ratings from TeamViewModel with custom geometric SVG badges.",
     });
   } else {
     const filtered = getFilteredPlayers();
     recordTrace({
       source: 'Firestore collection("players") [Simulated]',
       swiftView: "MatchesTabView.swift → PlayerListView.swift",
-      operation: "3-column Player Directory (220 real players)",
+      operation: "PlayerListView (220 players)",
       payload: { total: PLAYERS.length, matching: filtered.length, filters: { ...state.filters } },
-      note: "48 featured players show verified Wikimedia Commons CC portraits; remaining squad players display team-colored initial avatars.",
+      note: "Filters all 220 squad players client-side by position, nationality, and minimum overall rating.",
     });
   }
 }
@@ -420,7 +420,7 @@ function renderLogin() {
           <input id="loginEmail" class="eu-custom-input" type="email" placeholder="Email" aria-label="Email" value="fan@euro2024demo.example" required />
           <input id="loginPassword" class="eu-custom-input" type="password" placeholder="Password" aria-label="Password" value="DemoPass2024" required />
 
-          <div class="eu-auth-meta-row" title="Non-interactive placeholder labels preserved from LoginView.swift:39-44">
+          <div class="eu-auth-meta-row" title="Non-interactive labels from LoginView">
             <span>Remember Me</span>
             <span>Forget Password?</span>
           </div>
@@ -505,7 +505,7 @@ function renderStandingsList() {
               <img class="eu-badge-40" src="${escapeHtml(s.teamLogo)}" alt="${escapeHtml(s.teamName)} badge" />
               <div style="min-width:0;flex:1">
                 <div style="font-size:0.9rem;font-weight:700">${idx + 1}. ${escapeHtml(s.teamName)}</div>
-                <div class="eu-standing-stats">${s.points} pts · W: ${s.wins} D: ${s.draws} L: ${s.losses} GF: ${s.goalsFor} GA: ${s.goalsAgainst}</div>
+                <div class="eu-standing-stats">${s.points} ${s.points === 1 ? "pt" : "pts"} · W: ${s.wins} D: ${s.draws} L: ${s.losses} GF: ${s.goalsFor} GA: ${s.goalsAgainst}</div>
               </div>
             </div>
           </div>
@@ -956,7 +956,7 @@ function render() {
   const isLight = state.screen === "news";
   iosStatusbar.classList.toggle("light-text-dark", isLight);
   homeIndicator.classList.toggle("dark", isLight);
-  btnToggleAuth.textContent = state.isLoggedIn ? "Sign Out Demo" : "Quick Demo Sign-In";
+  btnToggleAuth.textContent = state.isLoggedIn ? "Sign Out" : "Quick Sign-In";
 
   switch (state.screen) {
     case "landing": phoneBody.innerHTML = renderLandingOrMain(); break;
@@ -1089,7 +1089,7 @@ function bindEvents() {
     recordTrace({
       source: "FirebaseAuth (Simulated)",
       swiftView: "LoginView.swift → MainView.swift",
-      operation: "Login Successful (Zero password stored)",
+      operation: "signIn(withEmail:password:) → Success",
       payload: { email, isLoggedIn: true, storedPasswordInUserDefaults: false },
       note: "Simulated Firebase Auth sign-in succeeded. Password is never written to local storage.",
     });
@@ -1220,7 +1220,7 @@ const TUTORIAL_STAGES = [
       recordTrace({
         source: "FirebaseAuth (Simulated)",
         swiftView: "LoginView.swift → MainView.swift",
-        operation: "Login Successful (Zero password stored)",
+        operation: "signIn(withEmail:password:) → Success",
         payload: { email: state.email, isLoggedIn: true, storedPasswordInUserDefaults: false },
         note: "Guided tutorial signed into the local preview account without any live Firebase call.",
       });

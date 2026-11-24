@@ -12,8 +12,8 @@ The live GitHub Pages site provides an interactive browser preview of the mobile
 
 - **Fixtures & Match Timelines:** Browse tournament fixtures and drill into individual matches to inspect possession breakdowns and chronologically sorted goal and assist events.
 - **Unified Standings Table:** Computes points (3 for a win, 1 for a draw, 0 for a loss), win-draw-loss records, and goal difference dynamically across all 20 national teams.
-- **National Teams & Squad Drill-Down:** Explore 20 national teams with squad ratings and custom geometric monogram badges, then open any team to view its 11-player roster.
-- **220-Player Directory & Multi-Criteria Filtering:** Filter 220 footballer profiles simultaneously by position, nationality, and minimum overall rating.
+- **National Teams & Squad Drill-Down:** Explore national teams with squad ratings and custom geometric monogram badges, then open any team to view its 11-player roster.
+- **Player Directory & Multi-Criteria Filtering:** Filter 220 footballer profiles simultaneously by position, nationality, and minimum overall rating.
 - **News & User Profile:** Includes a lightweight news feed view and an authenticated profile screen for managing favorite team, player, and match preferences.
 
 ## Technology Stack

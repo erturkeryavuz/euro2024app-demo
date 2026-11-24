@@ -31,7 +31,7 @@
 
   <!-- Left Title Block (high-contrast for 320x160 thumbnail legibility) -->
   <g>
-    <text x="72" y="132" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif" font-size="16" font-weight="700" letter-spacing="3.2" fill="#B49A78">SWIFTUI iOS · FIREBASE</text>
+    <text x="72" y="132" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif" font-size="16" font-weight="700" letter-spacing="3.2" fill="#B49A78">iOS FOOTBALL COMPANION</text>
 
     <text x="72" y="220" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" fill="#F1EDE5" letter-spacing="-1.2">Euro 2024</text>
     <text x="72" y="298" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-style="italic" font-weight="400" fill="#B49A78">App</text>
@@ -51,8 +51,8 @@
   <!-- Right Tucked Standings Card (grounded directly from computeStandings) -->
   <g filter="url(#spShadow)">
     <rect x="1018" y="138" width="204" height="364" rx="22" fill="#141923" stroke="rgba(255,255,255,0.11)" stroke-width="1.2"/>
-    <text x="1034" y="172" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#758D92">STANDINGS</text>
-    <text x="1034" y="198" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="18" font-weight="700" fill="#F1EDE5">Top 4 Table</text>
+    <text x="1034" y="172" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#758D92">UNIFIED TABLE</text>
+    <text x="1034" y="198" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="18" font-weight="700" fill="#F1EDE5">Standings</text>
 
       <rect x="1032" y="222" width="176" height="50" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
       <text x="1044" y="252" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="13" font-weight="700" fill="#B49A78">1</text>
